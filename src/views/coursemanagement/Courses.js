@@ -32,9 +32,9 @@ class Courses extends React.Component {
     });
 
     //Authentication
-    if (localStorage.authToken !== Token) {
-      window.location.href = "/login";
-    }
+    // if (localStorage.authToken !== Token) {
+    //   window.location.href = "/login";
+    // }
   }
 
   constructor() {

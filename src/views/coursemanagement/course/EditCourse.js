@@ -12,9 +12,9 @@ class EditCourse extends React.Component {
     });
 
     //Authentication
-    if (localStorage.authToken !== Token) {
-      window.location.href = "/login";
-    }
+    // if (localStorage.authToken !== Token) {
+    //   window.location.href = "/login";
+    // }
   }
   render() {
     return (

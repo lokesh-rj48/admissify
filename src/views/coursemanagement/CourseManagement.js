@@ -10,12 +10,12 @@ import Token from "../../components/AuthToken/AuthToken";
 const CourseManagement = () => {
   //const history = useHistory();
 
-  useEffect(() => {
-    if (localStorage.authToken !== Token) {
-      //history.push("/login");
-      window.location.href = "/login";
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.authToken !== Token) {
+  //     //history.push("/login");
+  //     window.location.href = "/login";
+  //   }
+  // }, []);
   return (
     <section class="content">
       <div class="col-xs-12">
