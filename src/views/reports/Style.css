@@ -1,0 +1,28 @@
+.modal-dialog {
+    min-width: 800px;
+}
+
+.add-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50px;
+    background-color: #ffc107;
+    cursor: pointer;
+    float: right;
+}
+
+.edit {
+    font-size: 20px;
+    text-align: center;
+    color: #ffc107;
+    line-height: 0;
+}
+
+::placeholder {
+    color: #ccc !important;
+    opacity: 1;
+    font-size: 13px;
+    /* Firefox */
+}

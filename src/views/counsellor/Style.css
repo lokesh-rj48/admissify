@@ -1,0 +1,85 @@
+@import url('https://kodhus.com/kodhus-ui/kodhus-0.1.0.min.css');
+.content {
+    min-height: 250px;
+    padding: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    background: #fff;
+}
+
+.modal-dialog {
+    min-width: 800px;
+}
+
+.tag-container {
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    background: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    padding: 6px;
+    overflow-x: scroll;
+}
+
+.mr-10 {
+    margin-top: 10px;
+}
+
+::placeholder {
+    color: #ccc !important;
+    opacity: 1;
+    font-size: 13px;
+    /* Firefox */
+}
+
+.tag-container .tag {
+    height: 30px;
+    margin: 5px;
+    padding: 5px 6px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    color: #333;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 1px 1px #fff;
+    cursor: default;
+}
+
+.tag i {
+    font-size: 16px;
+    color: #666;
+    margin-left: 5px;
+}
+
+.add-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50px;
+    background-color: #ffc107;
+    cursor: pointer;
+    float: right;
+}
+
+.select-option {
+    border: 0;
+    border-bottom: 1px solid silver;
+    border-radius: 2px;
+    padding: 5px;
+}
+
+.profile {
+    height: 30px;
+}
+
+.edit {
+    font-size: 20px;
+    text-align: center;
+    color: #ffc107;
+    line-height: 0;
+}

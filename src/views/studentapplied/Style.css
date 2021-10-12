@@ -1,0 +1,238 @@
+.modal-dialog {
+    min-width: 800px;
+}
+
+.add-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50px;
+    background-color: #ffc107;
+    cursor: pointer;
+    float: right;
+}
+
+.content {
+    min-height: 250px;
+    padding: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    background: #fff;
+}
+
+.tab button {
+    display: block;
+    color: #858585;
+    padding: 15px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
+    border-bottom: 1px solid #ccc;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.f-23 {
+    font-size: 23px;
+    padding-right: 5px;
+}
+
+.doc-icon {
+    color: #fbb415;
+}
+
+.tab button.active {
+    background-color: #fbb415;
+    color: #ffffff;
+    box-shadow: 0px 0px 6px 0px #00000065;
+}
+
+.tab-section {
+    box-shadow: 0px 0px 6px #00000065;
+    max-width: 74% !important;
+}
+
+.edit {
+    font-size: 20px;
+    text-align: center;
+    color: #ffc107;
+    line-height: 0;
+}
+
+::placeholder {
+    color: #ccc !important;
+    opacity: 1;
+    font-size: 13px;
+    /* Firefox */
+}
+
+.course-interest {
+    border: 1px dashed #F39C12;
+    max-width: 50%;
+    padding: 4px;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.country-interest {
+    border: 1px dashed #F39C12;
+    max-width: 20%;
+    padding: 4px;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.label-font {
+    color: #a0a3a6;
+}
+
+.remove {
+    cursor: pointer;
+}
+
+.remove-row {
+    cursor: pointer;
+    position: absolute;
+    right: 22px;
+    color: red;
+    font-size: 25px;
+}
+
+.custom-row {
+    cursor: pointer;
+    color: red;
+    font-size: 25px;
+}
+
+button.custom-btn {
+    border-radius: 0;
+    background-color: #303c54;
+    border: none;
+}
+
+button.custom-btn:hover {
+    border-radius: 0;
+    background-color: #303c54;
+    border: none;
+}
+
+button.custom-btn:focus {
+    border-radius: 0;
+    background-color: #303c54;
+    border: none;
+}
+
+.custom-card {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
+}
+
+.custom-card2 {
+    background-color: #ebedef38;
+}
+
+.custom-card3 {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
+}
+
+.popup-icon {
+    font-size: 26px;
+    color: #fb6a15;
+    margin-right: 10px;
+}
+
+.notes-checkbox {
+    width: 22px;
+    height: 22px;
+}
+
+.notes-box {
+    border: 1px dashed #F39C12;
+    padding: 6px;
+    border-radius: 4px;
+}
+
+.w-icon {
+    font-size: 29px;
+    color: #29d448;
+}
+
+.lead-icon {
+    font-size: 22px;
+    color: #29d448;
+}
+
+.d-flex {
+    margin-top: 26px;
+    display: flex;
+}
+
+.tab button {
+    display: block;
+    color: #858585;
+    padding: 15px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
+    border-bottom: 1px solid #ccc;
+}
+
+.tab button.active {
+    background-color: #fbb415;
+    color: #ffffff;
+    box-shadow: 0px 0px 6px 0px #00000065;
+}
+
+.tab-section {
+    box-shadow: 0px 0px 6px #00000065;
+    max-width: 74% !important;
+}
+
+.btn-exl {
+    text-align: end;
+}
+
+.d-icon {
+    background-color: #ffc107;
+    color: #3c4b64;
+    padding: 9px;
+    border-radius: 3px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.f-23 {
+    font-size: 23px;
+    padding-right: 5px;
+}
+
+/* .tr-f {
+    font-size: 14px;
+} */
+
+input#Checkbox1 {
+    width: 15px;
+    height: 17px;
+}
+
+input#ckbCheckAll {
+    width: 15px;
+    height: 17px;
+}

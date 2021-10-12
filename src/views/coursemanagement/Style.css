@@ -1,0 +1,170 @@
+::placeholder {
+    color: #ccc !important;
+    opacity: 1;
+    font-size: 13px;
+    /* Firefox */
+}
+
+.info-box {
+    display: block;
+    min-height: 90px;
+    background: #fff;
+    width: 100%;
+    box-shadow: 0px 0px 6px #11111161;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 20px;
+    text-align: center;
+    height: calc(300px - 30px);
+}
+
+a:hover {
+    /* color: #0056b3; */
+    text-decoration: none;
+}
+
+.inr-card {
+    height: auto;
+}
+
+.error-class {
+    color: red;
+    font-size: 13px;
+}
+
+.icon-dv {
+    margin-bottom: 0px;
+    position: relative;
+    font-weight: 300;
+}
+
+.icon-dv svg, .icon-dv img {
+    height: 35px;
+}
+
+.icon-dv .info-box-number {
+    font-size: 40px;
+    color: #F39C12;
+    display: inline-block;
+}
+
+.inr-card .info-box-content {
+    padding: 0;
+    margin-left: 0;
+}
+
+.as-role {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #434343;
+}
+
+.inr-card .info-box-content .inr-data {
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 15px !important;
+}
+
+.border-right {
+    border-right: 1px solid #e8e8e8;
+    display: inline-grid;
+}
+
+.inactive {
+    display: inline-grid;
+}
+
+inr-card .info-box-content .inr-data span {
+    height: 30px;
+    padding: 8px 0px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.role-box span {
+    margin: auto;
+    text-transform: uppercase;
+}
+
+.inr-card .info-box-content .inr-data .label-success {
+    margin-right: 21px;
+    font-size: 16px;
+    font-weight: normal;
+    color: #fff;
+    width: 85%;
+}
+
+.inr-card .info-box-content .inr-data .label-danger {
+    margin-right: 21px;
+    font-size: 21px;
+    font-weight: normal;
+    color: #fff;
+    width: 85%;
+}
+
+.label-success {
+    background-color: #6d519b !important;
+}
+
+.label-danger {
+    background-color: #f16c69!important;
+}
+
+.role-box .info-box-number {
+    margin: auto !important;
+    line-height: 11px !important;
+    margin-top: 12px !important;
+    border-radius: 4px;
+}
+
+.inr-card .info-box-content .inr-data span {
+    height: 30px;
+    padding: 8px 0px;
+    font-size: 12px;
+    color: #000;
+}
+
+.icon {
+    background: linear-gradient(to right, #06edfe 0%, #4aaffe 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    vertical-align: middle;
+    font-size: 30px !important;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    margin-right: 6px;
+}
+
+.modal-dialog {
+    min-width: 800px;
+}
+
+.mr-10 {
+    margin-top: 10px;
+}
+
+.add-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50px;
+    background-color: #ffc107;
+    cursor: pointer;
+    float: right;
+}
+
+.select-option {
+    border: 0;
+    border-bottom: 1px solid silver;
+    border-radius: 2px;
+    padding: 5px;
+}
+
+.edit {
+    font-size: 20px;
+    text-align: center;
+    color: #ffc107;
+    line-height: 0;
+}

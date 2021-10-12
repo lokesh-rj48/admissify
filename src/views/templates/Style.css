@@ -1,0 +1,53 @@
+.modal-dialog {
+    min-width: 800px;
+}
+
+.content {
+    min-height: 250px;
+    padding: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    background: #fff;
+}
+
+.add-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50px;
+    background-color: #ffc107;
+    cursor: pointer;
+    float: right;
+}
+
+input.btn.btn-warning {
+    font-size: 22px;
+}
+
+.mr-10 {
+    margin-top: 10px;
+}
+
+.select-option {
+    border: 0;
+    border-bottom: 1px solid silver;
+    border-radius: 2px;
+    padding: 5px;
+}
+
+::placeholder {
+    color: #ccc !important;
+    opacity: 1;
+    font-size: 13px;
+    /* Firefox */
+}
+
+.edit {
+    font-size: 20px;
+    text-align: center;
+    color: #ffc107;
+    line-height: 0;
+}

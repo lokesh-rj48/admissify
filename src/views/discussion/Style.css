@@ -1,0 +1,24 @@
+.edit {
+    font-size: 20px;
+    text-align: center;
+    color: #ffc107;
+    line-height: 0;
+}
+
+.modal-dialog {
+    min-width: 800px;
+}
+
+.mr-10 {
+    margin-top: 10px;
+}
+
+.content {
+    min-height: 250px;
+    padding: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    background: #fff;
+}

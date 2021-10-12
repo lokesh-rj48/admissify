@@ -1,0 +1,165 @@
+.content {
+    min-height: 250px;
+    padding: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    background: #fff;
+}
+
+.info-box {
+    display: block;
+    min-height: 90px;
+    background: #fff;
+    width: 100%;
+    box-shadow: 0px 0px 6px #00000065;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    padding: 20px;
+    text-align: center;
+    height: 95% !important;
+}
+
+.mr-t {
+    margin-top: 14px;
+}
+
+a:hover {
+    /* color: #0056b3; */
+    text-decoration: none;
+}
+
+.inr-card {
+    height: auto;
+}
+
+.icon-dv {
+    margin-bottom: 0px;
+    position: relative;
+    font-weight: 300;
+}
+
+.icon-dv svg, .icon-dv img {
+    height: 35px;
+}
+
+.icon-dv .info-box-number {
+    font-size: 40px;
+    color: #F39C12;
+    display: inline-block;
+}
+
+.inr-card .info-box-content {
+    padding: 0;
+    margin-left: 0;
+}
+
+.as-role {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #434343;
+}
+
+.inr-card .info-box-content .inr-data {
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 15px !important;
+}
+
+.border-right {
+    border-right: 1px solid #e8e8e8;
+    display: inline-grid;
+}
+
+.inactive {
+    display: inline-grid;
+}
+
+inr-card .info-box-content .inr-data span {
+    height: 30px;
+    padding: 8px 0px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.role-box span {
+    margin: auto;
+    text-transform: uppercase;
+}
+
+.inr-card .info-box-content .inr-data .label-success {
+    margin-right: 21px;
+    font-size: 21px;
+    font-weight: normal;
+    color: #fff;
+    width: 85%;
+}
+
+.inr-card .info-box-content .inr-data .label-danger {
+    margin-right: 21px;
+    font-size: 21px;
+    font-weight: normal;
+    color: #fff;
+    width: 85%;
+}
+
+.label-success {
+    background-color: #6d519b !important;
+}
+
+.label-danger {
+    background-color: #f16c69!important;
+}
+
+.role-box .info-box-number {
+    margin: auto !important;
+    line-height: 11px !important;
+    margin-top: 12px !important;
+    border-radius: 4px;
+}
+
+.inr-card .info-box-content .inr-data span {
+    height: 30px;
+    padding: 8px 0px;
+    font-size: 12px;
+    color: #000;
+}
+
+.lead-label {
+    margin-right: 21px;
+    font-size: 16px;
+    font-weight: normal;
+    color: #3c4b64;
+    width: 85%;
+    border: 1px solid #F39C12;
+    border-style: dashed;
+}
+
+.icon {
+    background: linear-gradient(to right, #06edfe 0%, #4aaffe 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    vertical-align: middle;
+    font-size: 30px !important;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    margin-right: 6px;
+}
+
+.info-box-number {
+    display: block;
+    font-size: 14px;
+    line-height: 25px;
+    color: #000;
+}
+
+.f-13 {
+    font-size: 13px;
+}
+
+.country-flag {
+    width: 22px;
+    height: 22px;
+}
