@@ -100,18 +100,18 @@ class Courses extends React.Component {
     var courseTextarea = $("#courseTextarea").val();
     if (!CName) {
       $("#course_name").after(
-        '<div class="error-class">Enter stream name.</div>'
+        '<div class="error-class">Enter course name.</div>'
       );
       evt.preventDefault();
     }
     if (!courseTextarea) {
       $("#courseTextarea").after(
-        '<div class="error-class">Enter Description</div>'
+        '<div class="error-class">Enter description</div>'
       );
       evt.preventDefault();
     }
     if (!CStream) {
-      $("#course_stream").after('<div class="error-class">Select Stream</div>');
+      $("#course_stream").after('<div class="error-class">Select stream</div>');
       evt.preventDefault();
     }
     return true;

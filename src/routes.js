@@ -1,6 +1,7 @@
 import React from "react";
 const Users = React.lazy(() => import("./views/user/Users"));
 const EditUser = React.lazy(() => import("./views/user/users/EditUser"));
+const Support = React.lazy(() => import("./views/support/Support"));
 const EditUserRole = React.lazy(() =>
   import("./views/user/userrole/EditUserRole")
 );
@@ -141,6 +142,7 @@ const routes = [
   { path: "/dashboard", name: "Dashboard", component: Dashboard },
   { path: "/admin/build/edit-city", name: "Edit City", component: EditCity },
   { path: "/admin/build/edit-state", name: "Edit State", component: EditState },
+  { path: "/admin/build/support", name: "Support", component: Support },
   {
     path: "/admin/build/student-discussion",
     name: "Discussion",

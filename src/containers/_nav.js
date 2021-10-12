@@ -95,6 +95,12 @@ const _nav = [
   },
   {
     _tag: "CSidebarNavItem",
+    name: "Support",
+    to: "/admin/build/support",
+    icon: <i class="fa fa-question-circle menu-icon"></i>,
+  },
+  {
+    _tag: "CSidebarNavItem",
     name: "Discussions",
     to: "/admin/build/student-discussion",
     icon: <i class="fa fa-commenting menu-icon"></i>,
