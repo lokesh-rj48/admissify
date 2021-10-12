@@ -86,7 +86,7 @@ const TheHeader = () => {
           type="submit"
           className="btn btn-danger"
           value="Logout"
-          onClick={logout}
+          // onClick={logout}
         />
       </CHeaderNav>
 

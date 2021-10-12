@@ -70,7 +70,7 @@ const Login = () => {
                       <img src={"/admin/build/avatars/admissify_logo.png"} />
                     </center>
                     <center>
-                      <p style={{ color: "red" }}>{loginStatus}</p>
+                      {/* <p style={{ color: "red" }}>{loginStatus}</p> */}
                     </center>
                     <br />
                     <CInputGroup className="mb-3">
@@ -83,9 +83,9 @@ const Login = () => {
                         type="text"
                         placeholder="Username"
                         autoComplete="username"
-                        onChange={(e) => {
-                          setUsername(e.target.value);
-                        }}
+                        // onChange={(e) => {
+                        //   setUsername(e.target.value);
+                        // }}
                       />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
@@ -98,18 +98,17 @@ const Login = () => {
                         type="password"
                         placeholder="Password"
                         autoComplete="current-password"
-                        onChange={(e) => {
-                          setPassword(e.target.value);
-                        }}
+                        // onChange={(e) => {
+                        //   setPassword(e.target.value);
+                        // }}
                       />
                     </CInputGroup>
                     <CRow>
                       <CCol xs="12">
                         <center>
                           <Link>
-                            <button class="btn btn-warning" onClick={login}>
-                              Login
-                            </button>
+                            {/* <button class="btn btn-warning" onClick={login}> */}
+                            <button class="btn btn-warning">Login</button>
                           </Link>
                         </center>
                       </CCol>
