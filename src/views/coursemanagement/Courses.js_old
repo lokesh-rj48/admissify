@@ -20,61 +20,9 @@ import {
   CCardBody,
   CTabs,
 } from "@coreui/react";
-//import axios from 'axios';
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-const axios = require("axios");
-
+import Token from "../../components/AuthToken/AuthToken";
 class Courses extends React.Component {
   componentDidMount() {
-    //For Course Level
-    axios
-      .get(
-        `http://localhost:8081/api/masters/getMasters?masterGroup=CourseLevel`,
-        {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        }
-      )
-      .then((res) => {
-        console.log("res", res);
-        this.setState({ courseLevelList: res.data.data });
-      })
-      .catch((err) => {
-        //console.log("err",err)
-        toast.error("Error occured at API end (" + err.message + ")");
-      });
-
-    //For Stream
-    axios
-      .get(`http://localhost:8081/api/masters/getMasters?masterGroup=STREAM`, {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      })
-      .then((res) => {
-        console.log("res", res);
-        this.setState({ streamList: res.data.data });
-      })
-      .catch((err) => {
-        //console.log("err",err)
-        toast.error("Error occured at API end (" + err.message + ")");
-      });
-
-    //For Course
-    axios
-      .get(`http://localhost:8081/api/masters/getMasters?masterGroup=COURSE`, {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      })
-      .then((res) => {
-        console.log("res", res);
-        this.setState({ courseList: res.data.data });
-      })
-      .catch((err) => {
-        //console.log("err",err)
-        toast.error("Error occured at API end (" + err.message + ")");
-      });
-
     //initialize datatable
     $(document).ready(function () {
       $("#example").DataTable();
@@ -82,6 +30,11 @@ class Courses extends React.Component {
     $("body").on("click", ".remove", function () {
       $(this).closest("div").remove();
     });
+
+    //Authentication
+    // if (localStorage.authToken !== Token) {
+    //   window.location.href = "/login";
+    // }
   }
 
   constructor() {
@@ -91,13 +44,6 @@ class Courses extends React.Component {
       show2: false,
       show3: false,
       show4: false,
-      courseLevelList: [],
-      streamList: [],
-      courseList: [],
-      courseLevel: "",
-      courseDesc: "",
-      courseStream: "",
-      courseName: "",
     };
   }
   handleModel() {
@@ -113,18 +59,12 @@ class Courses extends React.Component {
     this.setState({ show4: !this.state.show4 });
   }
 
-  handleChange(evt) {
-    this.setState({
-      [evt.target.name]: evt.target.value,
-    });
-  }
-
   courseLevelValidations(evt) {
     $(".error-class").remove();
-    var CourseLevel = $("#course_level").val();
+    var CourseLevel = $("#course_level_").val();
     var courseTextarea = $("#courseTextarea").val();
     if (!CourseLevel) {
-      $("#course_level").after(
+      $("#course_level_").after(
         '<div class="error-class">Enter course level.</div>'
       );
       evt.preventDefault();
@@ -135,30 +75,6 @@ class Courses extends React.Component {
       );
       evt.preventDefault();
     }
-
-    const postData = {
-      masterName: this.state.courseLevel,
-      masterCode: this.state.courseLevel.toLowerCase(),
-      masterDesc: this.state.courseDesc,
-      masterGroup: "CourseLevel",
-    };
-
-    console.log("postData", postData);
-    axios
-      .post(`http://localhost:8081/api/masters/add`, postData, {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      })
-      .then((res) => {
-        console.log("res", res);
-        toast.success(res.data.message);
-        window.location.reload();
-      })
-      .catch((err) => {
-        //console.log("err",err)
-        toast.error("Error occured at API end (" + err.message + ")");
-      });
-
     return true;
   }
   streamValidations(evt) {
@@ -175,28 +91,6 @@ class Courses extends React.Component {
       );
       evt.preventDefault();
     }
-
-    const streamData = {
-      masterName: this.state.courseStream,
-      masterCode: this.state.courseStream.toLowerCase(),
-      parent: this.state.courseLevel,
-      masterGroup: "STREAM",
-    };
-    //console.log("streamData", streamData);
-    axios
-      .post(`http://localhost:8081/api/masters/add`, streamData, {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      })
-      .then((res) => {
-        console.log("res", res);
-        toast.success(res.data.message);
-        window.location.reload();
-      })
-      .catch((err) => {
-        //console.log("err",err)
-        toast.error("Error occured at API end (" + err.message + ")");
-      });
     return true;
   }
   courseValidations(evt) {
@@ -220,40 +114,12 @@ class Courses extends React.Component {
       $("#course_stream").after('<div class="error-class">Select stream</div>');
       evt.preventDefault();
     }
-
-    const courseData = {
-      masterName: this.state.courseName,
-      masterCode: this.state.courseName.toLowerCase(),
-      masterDesc: this.state.courseDesc,
-      parent: this.state.courseStream,
-      masterGroup: "COURSE",
-    };
-    console.log("courseData", courseData);
-    axios
-      .post(`http://localhost:8081/api/masters/add`, courseData, {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      })
-      .then((res) => {
-        console.log("res", res);
-        toast.success(res.data.message);
-        window.location.reload();
-      })
-      .catch((err) => {
-        //console.log("err",err)
-        toast.error("Error occured at API end (" + err.message + ")");
-      });
-
     return true;
   }
 
   render() {
-    const courseLevelList = this.state.courseLevelList || [];
-    const streamList = this.state.streamList || [];
-    const courseList = this.state.courseList || [];
     return (
       <section className="content">
-        <ToastContainer />
         <Modal show={this.state.show} onHide={() => this.handleModel()}>
           <Modal.Header closeButton>
             <h3 class="box-title">Add Course Level</h3>
@@ -264,14 +130,11 @@ class Courses extends React.Component {
                 <div class="col-lg-12 col-sm-12 col-xs-12">
                   <div class="form-group">
                     <label>Course Level</label>
-                    <input
-                      type="text"
-                      onChange={(evt) => this.handleChange(evt)}
-                      defaultValue={this.state.courseLevel}
-                      class="form-control"
-                      id="courseLevel"
-                      name="courseLevel"
-                    />
+                    <select class="form-control" id="course_level_">
+                      <option>Select</option>
+                      <option>UG</option>
+                      <option>PG</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-lg-12 col-sm-12 col-xs-12">
@@ -281,7 +144,7 @@ class Courses extends React.Component {
                       id="courseTextarea"
                       class="form-control"
                       rows="3"
-                      name="courseDesc"
+                      name="about"
                       placeholder="Enter about course level"
                     ></textarea>
                   </div>
@@ -308,19 +171,11 @@ class Courses extends React.Component {
                   <div class="form-group">
                     <label>Course Level</label>
                     <select
+                      name="course"
                       class="form-control"
                       id="stream_course_level"
-                      name="courseLevel"
-                      onChange={(evt) => this.handleChange(evt)}
-                      defaultValue={this.state.courseLevel}
                     >
                       <option value="">Select Course Level</option>
-                      {courseLevelList &&
-                        courseLevelList.map((data) => {
-                          return (
-                            <option value={data.id}>{data.MasterName}</option>
-                          );
-                        })}
                     </select>
                   </div>
                 </div>
@@ -329,12 +184,10 @@ class Courses extends React.Component {
                     <label>Stream</label>
                     <input
                       type="text"
-                      onChange={(evt) => this.handleChange(evt)}
-                      defaultValue={this.state.courseStream}
+                      name="stream"
                       placeholder="Enter stream name"
                       class="form-control"
                       id="stream"
-                      name="courseStream"
                     />
                   </div>
                 </div>
@@ -360,19 +213,11 @@ class Courses extends React.Component {
                   <div class="form-group">
                     <label>Stream</label>
                     <select
-                      name="courseStream"
+                      name="course_stream"
                       class="form-control"
                       id="course_stream"
-                      onChange={(evt) => this.handleChange(evt)}
-                      defaultValue={this.state.courseStream}
                     >
                       <option value="">Select Stream</option>
-                      {streamList &&
-                        streamList.map((data) => {
-                          return (
-                            <option value={data.id}>{data.MasterName}</option>
-                          );
-                        })}
                     </select>
                   </div>
                 </div>
@@ -381,12 +226,10 @@ class Courses extends React.Component {
                     <label>Course</label>
                     <input
                       type="text"
-                      name="courseName"
+                      name="course_name"
                       placeholder="Enter course name"
                       class="form-control"
                       id="course_name"
-                      onChange={(evt) => this.handleChange(evt)}
-                      defaultValue={this.state.courseName}
                     />
                   </div>
                 </div>
@@ -397,10 +240,8 @@ class Courses extends React.Component {
                       id="courseTextarea"
                       class="form-control"
                       rows="3"
-                      name="courseDesc"
+                      name="about"
                       placeholder="Enter about course"
-                      onChange={(evt) => this.handleChange(evt)}
-                      defaultValue={this.state.courseDesc}
                     ></textarea>
                   </div>
                 </div>
@@ -511,32 +352,40 @@ class Courses extends React.Component {
                                       </tr>
                                     </thead>
                                     <tbody>
-                                      {courseLevelList &&
-                                        courseLevelList.length > 0 &&
-                                        courseLevelList.map((data, key) => {
-                                          return (
-                                            <tr>
-                                              <td>{++key}</td>
-                                              <td>{data.MasterName}</td>
-                                              <td>
-                                                {!data.MasterStatus &&
-                                                data.MasterStatus != "Inactive"
-                                                  ? "Active"
-                                                  : "Inactive"}
-                                              </td>
-                                              <td>
-                                                <Link
-                                                  to={
-                                                    "/admin/build/edit-course-level"
-                                                  }
-                                                  class="edit"
-                                                >
-                                                  <span class="fa fa-pencil-square-o"></span>
-                                                </Link>
-                                              </td>
-                                            </tr>
-                                          );
-                                        })}
+                                      <tr>
+                                        <td>1</td>
+                                        <td>PG</td>
+                                        <td>
+                                          <a href="#!">Active</a>
+                                        </td>
+                                        <td>
+                                          <Link
+                                            to={
+                                              "/admin/build/edit-course-level"
+                                            }
+                                            class="edit"
+                                          >
+                                            <span class="fa fa-pencil-square-o"></span>
+                                          </Link>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td>2</td>
+                                        <td>UG</td>
+                                        <td>
+                                          <a href="#!">Active</a>
+                                        </td>
+                                        <td>
+                                          <Link
+                                            to={
+                                              "/admin/build/edit-course-level"
+                                            }
+                                            class="edit"
+                                          >
+                                            <span class="fa fa-pencil-square-o"></span>
+                                          </Link>
+                                        </td>
+                                      </tr>
                                     </tbody>
                                   </table>
                                 </div>
@@ -642,33 +491,22 @@ class Courses extends React.Component {
                                       </tr>
                                     </thead>
                                     <tbody>
-                                      {streamList &&
-                                        streamList.length > 0 &&
-                                        streamList.map((data, key) => {
-                                          return (
-                                            <tr>
-                                              <td>{++key}</td>
-                                              <td>{data.MasterName}</td>
-                                              <td>{data.Parent.MasterName}</td>
-                                              <td>
-                                                {!data.MasterStatus &&
-                                                data.MasterStatus != "Inactive"
-                                                  ? "Active"
-                                                  : "Inactive"}
-                                              </td>
-                                              <td>
-                                                <Link
-                                                  to={
-                                                    "/admin/build/edit-course-level"
-                                                  }
-                                                  class="edit"
-                                                >
-                                                  <span class="fa fa-pencil-square-o"></span>
-                                                </Link>
-                                              </td>
-                                            </tr>
-                                          );
-                                        })}
+                                      <tr>
+                                        <td>1</td>
+                                        <td>General Management</td>
+                                        <td>PG</td>
+                                        <td>
+                                          <a href="#!">Active</a>
+                                        </td>
+                                        <td>
+                                          <Link
+                                            to={"/admin/build/edit-stream"}
+                                            class="edit"
+                                          >
+                                            <span class="fa fa-pencil-square-o"></span>
+                                          </Link>
+                                        </td>
+                                      </tr>
                                     </tbody>
                                   </table>
                                 </div>
@@ -797,35 +635,36 @@ class Courses extends React.Component {
                                       </tr>
                                     </thead>
                                     <tbody>
-                                      {courseList &&
-                                        courseList.length > 0 &&
-                                        courseList.map((data, key) => {
-                                          return (
-                                            <tr>
-                                              <td>{++key}</td>
-                                              <td>{data.MasterName}</td>
-                                              <td>{data.Parent.MasterName}</td>
-                                              <td></td>
-                                              <td>{data.MasterDesc}</td>
-                                              <td>
-                                                {!data.MasterStatus &&
-                                                data.MasterStatus != "Inactive"
-                                                  ? "Active"
-                                                  : "Inactive"}
-                                              </td>
-                                              <td>
-                                                <Link
-                                                  to={
-                                                    "/admin/build/edit-course-level"
-                                                  }
-                                                  class="edit"
-                                                >
-                                                  <span class="fa fa-pencil-square-o"></span>
-                                                </Link>
-                                              </td>
-                                            </tr>
-                                          );
-                                        })}
+                                      <tr>
+                                        <td>1</td>
+                                        <td>
+                                          Advanced Manufacturing Engineering and
+                                          Management
+                                        </td>
+                                        <td>General Management</td>
+                                        <td>PG</td>
+                                        <td>
+                                          Manufacturing is at the centre of
+                                          engineering, as everything in our
+                                          day-to-day lives needs to be created
+                                          and produced. Our Advanced
+                                          Manufacturing Engineering and
+                                          Management MSc delivers a unique
+                                          balance between manufacturing
+                                          processes and management.
+                                        </td>
+                                        <td>
+                                          <a href="#!">Active</a>
+                                        </td>
+                                        <td>
+                                          <Link
+                                            to={"/admin/build/edit-course"}
+                                            class="edit"
+                                          >
+                                            <span class="fa fa-pencil-square-o"></span>
+                                          </Link>
+                                        </td>
+                                      </tr>
                                     </tbody>
                                   </table>
                                 </div>
