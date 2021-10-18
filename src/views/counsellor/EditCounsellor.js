@@ -4,8 +4,7 @@ import "./Style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
 import $ from "jquery";
-import MultiSelect from "@kenshooui/react-multi-select";
-import "@kenshooui/react-multi-select/dist/style.css";
+import Multiselect from "multiselect-react-dropdown";
 class EditCounsellor extends React.Component {
   componentDidMount() {
     $(document).on("input", ".number", function () {
@@ -26,12 +25,11 @@ class EditCounsellor extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.state = {
-      items: [
-        { id: 1, label: "Admissify Certified" },
-        { id: 2, label: "Admissify Verified" },
-        { id: 3, label: "Premium" },
+      options: [
+        { status: "Admissify Certified", id: 1 },
+        { status: "Admissify Verified", id: 2 },
+        { status: "Premium", id: 3 },
       ],
-      selectedItems: [],
     };
   }
 
@@ -39,7 +37,6 @@ class EditCounsellor extends React.Component {
     this.setState({ selectedItems });
   }
   render() {
-    const { items, selectedItems } = this.state;
     return (
       <section class="content">
         <div class="row">
@@ -97,7 +94,7 @@ class EditCounsellor extends React.Component {
                 <div class="col-lg-6 col-sm-6 col-xs-12">
                   <div class="form-group">
                     <label>Gender</label>
-                    <select class="form-control select-option">
+                    <select class="form-control">
                       <option value="">Select Gender</option>
                       <option value="">Male</option>
                       <option value="">Female</option>
@@ -178,10 +175,12 @@ class EditCounsellor extends React.Component {
                 <div class="col-lg-6 col-sm-6 col-xs-12">
                   <div class="form-group">
                     <label>Counsellor Status</label>
-                    <MultiSelect
-                      items={items}
-                      selectedItems={selectedItems}
-                      onChange={this.handleChange}
+                    <Multiselect
+                      options={this.state.options}
+                      selectedValues={this.state.selectedValue}
+                      onSelect={this.onSelect}
+                      onRemove={this.onRemove}
+                      displayValue="status"
                     />
                   </div>
                 </div>

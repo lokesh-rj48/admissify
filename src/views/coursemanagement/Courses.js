@@ -78,6 +78,8 @@ class Courses extends React.Component {
     //initialize datatable
     $(document).ready(function () {
       $("#example").DataTable();
+      //$("#example1").DataTable();
+      //$("#example2").DataTable();
     });
     $("body").on("click", ".remove", function () {
       $(this).closest("div").remove();
@@ -242,6 +244,9 @@ class Courses extends React.Component {
       .catch((err) => {
         //console.log("err",err)
         toast.error("Error occured at API end (" + err.message + ")");
+        err.status(500).send({
+          message: err.message || "Course already exist!",
+        });
       });
 
     return true;
@@ -559,13 +564,14 @@ class Courses extends React.Component {
                               <div class="box-body">
                                 <div class="row">
                                   <div class="col-sm-3">
-                                    <div
-                                      class="dataTables_length"
-                                      id="example1_length"
-                                    >
+                                    <div class="dataTables_length">
                                       <label>Course Level&#160;:</label>
                                       <select
-                                        name="course_level"
+                                        name="courseLevel"
+                                        onChange={(evt) =>
+                                          this.handleChange(evt)
+                                        }
+                                        defaultValue={this.state.courseLevel}
                                         aria-controls="example1"
                                         value=""
                                         class="form-control input-sm"
@@ -574,8 +580,14 @@ class Courses extends React.Component {
                                         <option value="-1">
                                           All Course Level
                                         </option>
-                                        <option value="0">PG</option>
-                                        <option value="1">UG</option>
+                                        {courseLevelList &&
+                                          courseLevelList.map((data) => {
+                                            return (
+                                              <option value={data.id}>
+                                                {data.MasterName}
+                                              </option>
+                                            );
+                                          })}
                                       </select>
                                     </div>
                                   </div>
@@ -629,7 +641,7 @@ class Courses extends React.Component {
                                 <hr />
                                 <div class="tab-content">
                                   <table
-                                    id="example"
+                                    id="example1"
                                     class="table table-bordered "
                                   >
                                     <thead>
@@ -691,13 +703,14 @@ class Courses extends React.Component {
                               <div class="box-body">
                                 <div class="row">
                                   <div class="col-sm-3">
-                                    <div
-                                      class="dataTables_length"
-                                      id="example1_length"
-                                    >
+                                    <div class="dataTables_length">
                                       <label>Course Level&#160;:</label>
                                       <select
-                                        name="course_level"
+                                        name="courseLevel"
+                                        onChange={(evt) =>
+                                          this.handleChange(evt)
+                                        }
+                                        defaultValue={this.state.courseLevel}
                                         aria-controls="example1"
                                         value=""
                                         class="form-control input-sm"
@@ -706,8 +719,14 @@ class Courses extends React.Component {
                                         <option value="-1">
                                           All Course Level
                                         </option>
-                                        <option value="0">PG</option>
-                                        <option value="1">UG</option>
+                                        {courseLevelList &&
+                                          courseLevelList.map((data) => {
+                                            return (
+                                              <option value={data.id}>
+                                                {data.MasterName}
+                                              </option>
+                                            );
+                                          })}
                                       </select>
                                     </div>
                                   </div>
@@ -716,19 +735,24 @@ class Courses extends React.Component {
                                       class="dataTables_length"
                                       id="example1_length"
                                     >
-                                      <label>Streams&#160;:</label>
+                                      <label>Stream&#160;:</label>
                                       <select
-                                        name="stream"
-                                        aria-controls="example1"
-                                        value=""
-                                        class="form-control input-sm"
-                                        style={{ width: "100%" }}
+                                        name="courseStream"
+                                        class="form-control"
+                                        onChange={(evt) =>
+                                          this.handleChange(evt)
+                                        }
+                                        defaultValue={this.state.courseStream}
                                       >
-                                        <option value="-1">All Streams</option>
-                                        <option value="0">
-                                          General Management
-                                        </option>
-                                        <option value="1">ENG</option>
+                                        <option value="">Select Stream</option>
+                                        {streamList &&
+                                          streamList.map((data) => {
+                                            return (
+                                              <option value={data.id}>
+                                                {data.MasterName}
+                                              </option>
+                                            );
+                                          })}
                                       </select>
                                     </div>
                                   </div>
@@ -782,7 +806,7 @@ class Courses extends React.Component {
                                 <hr />
                                 <div class="tab-content">
                                   <table
-                                    id="example"
+                                    id="example2"
                                     class="table table-bordered "
                                   >
                                     <thead>
