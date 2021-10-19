@@ -10,6 +10,7 @@ import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import $ from "jquery";
+
 import {
   CNav,
   CNavItem,
@@ -27,6 +28,7 @@ const axios = require("axios");
 
 class Courses extends React.Component {
   componentDidMount() {
+    console.log("cors error");
     //For Course Level
     axios
       .get(
@@ -231,6 +233,7 @@ class Courses extends React.Component {
       masterGroup: "COURSE",
     };
     console.log("courseData", courseData);
+    // evt.preventDefault();
     axios
       .post(`http://localhost:8081/api/masters/add`, courseData, {
         "Access-Control-Allow-Origin": "*",
@@ -532,7 +535,8 @@ class Courses extends React.Component {
                                               <td>
                                                 <Link
                                                   to={
-                                                    "/admin/build/edit-course-level"
+                                                    "/admin/build/edit-course-level/" +
+                                                    data.id
                                                   }
                                                   class="edit"
                                                 >
@@ -671,7 +675,8 @@ class Courses extends React.Component {
                                               <td>
                                                 <Link
                                                   to={
-                                                    "/admin/build/edit-course-level"
+                                                    "/admin/build/edit-stream/" +
+                                                    data.id
                                                   }
                                                   class="edit"
                                                 >
@@ -840,7 +845,8 @@ class Courses extends React.Component {
                                               <td>
                                                 <Link
                                                   to={
-                                                    "/admin/build/edit-course-level"
+                                                    "/admin/build/edit-course/" +
+                                                    data.id
                                                   }
                                                   class="edit"
                                                 >

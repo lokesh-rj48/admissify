@@ -362,7 +362,7 @@ class Users extends React.Component {
                                           <Link to="#!">Active</Link>
                                         </td>
                                         <td>
-                                          <a href="#!">
+                                          <a href="#!" class="edit">
                                             <span
                                               class="fa fa-eye"
                                               style={{ "margin-right": "5px" }}
@@ -485,34 +485,16 @@ class Users extends React.Component {
                                     <tbody>
                                       <tr>
                                         <td>1</td>
-                                        <td>Associate Manager</td>
-                                        <td>
-                                          <Link
-                                            to={"/admin/build/view-user-role"}
-                                          >
-                                            <span
-                                              class="fa fa-eye"
-                                              style={{ "margin-right": "5px" }}
-                                            ></span>
-                                          </Link>{" "}
-                                          <Link
-                                            to={"/admin/build/edit-user-role"}
-                                            class="edit"
-                                          >
-                                            <span class="fa fa-pencil-square-o"></span>
-                                          </Link>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td>2</td>
                                         <td>Application</td>
                                         <td>
                                           <Link
-                                            to={"/admin/build/view-user-role"}
+                                            to={"/admin/build/user-permission"}
+                                            class="edit"
                                           >
                                             <span
-                                              class="fa fa-eye"
+                                              class="fa fa-check-square"
                                               style={{ "margin-right": "5px" }}
+                                              title="User Permission"
                                             ></span>
                                           </Link>{" "}
                                           <Link

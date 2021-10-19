@@ -5,6 +5,7 @@ import { Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
 import "./Style.css";
+import Multiselect from "multiselect-react-dropdown";
 //Datatable Modules
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
@@ -42,6 +43,20 @@ class Coaches extends React.Component {
   constructor() {
     super();
     this.state = {
+      SlotOptions: [
+        { timeSlot: "09:00am - 11:00am", id: 1 },
+        { timeSlot: "11:00am - 01:00pm", id: 2 },
+        { timeSlot: "01:00pm - 03:00pm", id: 3 },
+        { timeSlot: "03:00pm - 05:00pm", id: 4 },
+      ],
+      DayOptions: [
+        { day: "Monday", id: 1 },
+        { day: "Tuesday", id: 2 },
+        { day: "Wednesday", id: 3 },
+        { day: "Thursday", id: 4 },
+        { day: "Friday", id: 5 },
+        { day: "Saturday", id: 6 },
+      ],
       show: false,
       name: "",
       email: "",
@@ -250,14 +265,22 @@ class Coaches extends React.Component {
                 </div>
                 <div class="col-lg-6 col-sm-6 col-xs-12">
                   <div class="form-group">
-                    <label>Time</label>
-                    <input
-                      type="time"
-                      name="timeing"
+                    <label>Available Time Slot</label>
+                    <Multiselect
+                      options={this.state.SlotOptions}
+                      defaultValue={this.state.timeing}
                       onChange={(evt) => this.handleChange(evt)}
                       defaultValue={this.state.timeing}
-                      class="form-control"
-                      placeholder="Enter time"
+                      displayValue="timeSlot"
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-12">
+                  <div class="form-group">
+                    <label>Availability Days</label>
+                    <Multiselect
+                      options={this.state.DayOptions}
+                      displayValue="day"
                     />
                   </div>
                 </div>
@@ -265,7 +288,7 @@ class Coaches extends React.Component {
                   <div class="form-group">
                     <label>City</label>
                     <select
-                      class="form-control select-option"
+                      class="form-control"
                       name="cityId"
                       onChange={(evt) => this.handleChange(evt)}
                       defaultValue={this.state.cityId}

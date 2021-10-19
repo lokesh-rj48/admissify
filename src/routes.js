@@ -2,6 +2,11 @@ import React from "react";
 const Users = React.lazy(() => import("./views/user/Users"));
 const EditUser = React.lazy(() => import("./views/user/users/EditUser"));
 const Support = React.lazy(() => import("./views/support/Support"));
+const Blog = React.lazy(() => import("./views/blog/Blog"));
+const EditBlog = React.lazy(() => import("./views/blog/EditBlog"));
+const EditBlogCategory = React.lazy(() =>
+  import("./views/blog/EditBlogCategory")
+);
 const EditUserRole = React.lazy(() =>
   import("./views/user/userrole/EditUserRole")
 );
@@ -143,6 +148,13 @@ const routes = [
   { path: "/admin/build/edit-city", name: "Edit City", component: EditCity },
   { path: "/admin/build/edit-state", name: "Edit State", component: EditState },
   { path: "/admin/build/support", name: "Support", component: Support },
+  { path: "/admin/build/blog", name: "Blog", component: Blog },
+  { path: "/admin/build/edit-blog", name: "Edit Blog", component: EditBlog },
+  {
+    path: "/admin/build/edit-blog-category",
+    name: "Edit Blog Category",
+    component: EditBlogCategory,
+  },
   {
     path: "/admin/build/student-discussion",
     name: "Discussion",

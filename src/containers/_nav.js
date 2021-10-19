@@ -53,7 +53,7 @@ const _nav = [
   },
   {
     _tag: "CSidebarNavItem",
-    name: "Users",
+    name: "Students",
     to: "/admin/build/students",
     icon: <i class="fa fa-users menu-icon"></i>,
   },
@@ -116,6 +116,12 @@ const _nav = [
     name: "Admissify Users",
     to: "/admin/build/user",
     icon: <i class="fa fa-user menu-icon"></i>,
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Blogs",
+    to: "/admin/build/blog",
+    icon: <i class="fa fa-file-text-o menu-icon"></i>,
   },
   // {
   //   _tag: "CSidebarNavDropdown",
