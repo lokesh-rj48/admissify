@@ -85,7 +85,7 @@ class Discussion extends React.Component {
               <div class="col-lg-6 col-sm-6 col-xs-12">
                 <div class="form-group">
                   <label>Discussion Category</label>
-                  <select className="form-control">
+                  <select className="form-control" name="category">
                     <option value="">Select</option>
                   </select>
                 </div>
@@ -93,7 +93,7 @@ class Discussion extends React.Component {
               <div class="col-lg-6 col-sm-6 col-xs-12">
                 <div class="form-group">
                   <label>Discussion Sub Category</label>
-                  <select className="form-control">
+                  <select className="form-control" name="sub_category">
                     <option value="">Select</option>
                   </select>
                 </div>
@@ -105,6 +105,7 @@ class Discussion extends React.Component {
                     type="text"
                     class="form-control"
                     placeholder="Enter tag"
+                    name="tag"
                   />
                 </div>
               </div>
@@ -116,6 +117,7 @@ class Discussion extends React.Component {
                     rows="3"
                     placeholder="Enter topic"
                     maxLength="255"
+                    name="topic"
                   ></textarea>
                 </div>
               </div>
@@ -148,7 +150,7 @@ class Discussion extends React.Component {
                   <label>Discussion Category</label>
                   <input
                     type="text"
-                    name="discussion_category"
+                    name="category"
                     class="form-control"
                     placeholder="Enter discussion category"
                   />
@@ -159,7 +161,7 @@ class Discussion extends React.Component {
                   <label>Discussion Sub Category</label>
                   <input
                     type="text"
-                    name="discussion_sub_category"
+                    name="sub_category"
                     class="form-control"
                     placeholder="Enter discussion sub category"
                   />
@@ -172,7 +174,7 @@ class Discussion extends React.Component {
                     id="addressTextarea"
                     class="form-control"
                     rows="3"
-                    name="about"
+                    name="additional_field"
                     placeholder="Enter text"
                   ></textarea>
                 </div>

@@ -125,7 +125,7 @@ class EditCountry extends React.Component {
                           <div class="form-group">
                             <input
                               type="text"
-                              name="meta_title"
+                              name="scholarship"
                               class="form-control"
                               placeholder="Ex- Based on Merit/Need/Early Acceptances"
                             />
@@ -135,7 +135,7 @@ class EditCountry extends React.Component {
                           <div class="form-group">
                             <input
                               type="text"
-                              name="meta_title"
+                              name="scholarship_percentage"
                               class="form-control"
                               placeholder="Ex- 5% - 40%*"
                             />
@@ -150,7 +150,7 @@ class EditCountry extends React.Component {
                           <div class="form-group">
                             <input
                               type="text"
-                              name="meta_title"
+                              name="accommodation"
                               class="form-control"
                               placeholder="Ex- Payable Towards Stay"
                             />
@@ -160,7 +160,7 @@ class EditCountry extends React.Component {
                           <div class="form-group">
                             <input
                               type="text"
-                              name="meta_title"
+                              name="accommodation_charge"
                               class="form-control"
                               placeholder="Ex- INR 2 - 4 Lakhs Per annum"
                             />
@@ -171,7 +171,7 @@ class EditCountry extends React.Component {
                             <label>Exchange Rate</label>
                             <input
                               type="text"
-                              name="meta_title"
+                              name="exchange_rate"
                               class="form-control"
                               placeholder="Enter exchange rate"
                             />
@@ -228,7 +228,7 @@ class EditCountry extends React.Component {
                             <label>Fee Affordability Total Cost UG</label>
                             <input
                               type="text"
-                              name="affordability_cost_ug"
+                              name="affordability_total_cost_ug"
                               class="form-control"
                               placeholder="Enter fee affordability total cost ug"
                             />
@@ -239,7 +239,7 @@ class EditCountry extends React.Component {
                             <label>Fee Affordability Total Cost PG</label>
                             <input
                               type="text"
-                              name="affordability_cost_pg"
+                              name="affordability_total_cost_pg"
                               class="form-control"
                               placeholder="Enter fee affordability total cost pg"
                             />

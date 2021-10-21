@@ -69,7 +69,7 @@ class Advertisement extends React.Component {
               <div class="col-lg-6 col-sm-6 col-xs-12">
                 <div class="form-group">
                   <label>Banner Type</label>
-                  <select class="form-control">
+                  <select class="form-control" name="banner_type">
                     <option value="">Select</option>
                     <option value="">PopUp Banner</option>
                     <option value="">Middle Banner</option>
@@ -80,7 +80,7 @@ class Advertisement extends React.Component {
               <div class="col-lg-6 col-sm-6 col-xs-12">
                 <div class="form-group">
                   <label> Image</label>
-                  <input type="file" name="file" class="form-control" />
+                  <input type="file" name="image" class="form-control" />
                 </div>
               </div>
               <div class="col-lg-6 col-sm-6 col-xs-12">
@@ -90,6 +90,7 @@ class Advertisement extends React.Component {
                     class="form-control"
                     id="banner_"
                     onChange={() => this.bannerHideShow()}
+                    name="advertisement_on"
                   >
                     <option value="">Select</option>
                     <option value="Website Page">Website Page</option>
@@ -104,7 +105,7 @@ class Advertisement extends React.Component {
               >
                 <div class="form-group">
                   <label>Page Name</label>
-                  <select class="form-control">
+                  <select class="form-control" name="page_name">
                     <option value="">Select</option>
                     <option value="">Home Page</option>
                     <option value="">University Page</option>
@@ -118,7 +119,7 @@ class Advertisement extends React.Component {
               >
                 <div class="form-group">
                   <label>Country Name</label>
-                  <select class="form-control">
+                  <select class="form-control" name="country">
                     <option value="">Select</option>
                     <option value="">AUSTRALIA</option>
                     <option value="">CANADA</option>
@@ -139,7 +140,7 @@ class Advertisement extends React.Component {
               <div class="col-lg-6 col-sm-6 col-xs-12">
                 <div class="form-group">
                   <label>Valid From</label>
-                  <input type="date" name="fdate" class="form-control" />
+                  <input type="date" name="valid_from" class="form-control" />
                 </div>
               </div>
               <div class="col-lg-6 col-sm-6 col-xs-12">

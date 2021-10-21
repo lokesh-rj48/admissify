@@ -71,7 +71,7 @@ class LeadManagement extends React.Component {
                   <label> First Name</label>
                   <input
                     type="text"
-                    name="fname"
+                    name="first_name"
                     class="form-control"
                     placeholder="Enter first name"
                   />
@@ -82,7 +82,7 @@ class LeadManagement extends React.Component {
                   <label>Last Name</label>
                   <input
                     type="text"
-                    name="lname"
+                    name="last_name"
                     class="form-control"
                     placeholder="Enter last name"
                   />
@@ -91,7 +91,7 @@ class LeadManagement extends React.Component {
               <div class="col-lg-6 col-sm-6 col-xs-12">
                 <div class="form-group">
                   <label>Gender </label>
-                  <select class="form-control select-option" name="gender">
+                  <select class="form-control" name="gender">
                     <option value="">Select Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
@@ -172,10 +172,7 @@ class LeadManagement extends React.Component {
               <div class="col-lg-6 col-sm-6 col-xs-12">
                 <div class="form-group">
                   <label>Course Level</label>
-                  <select
-                    class="form-control select-option"
-                    name="course_level"
-                  >
+                  <select class="form-control" name="course_level">
                     <option value="">Select Course Level</option>
                   </select>
                 </div>
@@ -183,7 +180,7 @@ class LeadManagement extends React.Component {
               <div class="col-lg-6 col-sm-6 col-xs-12">
                 <div class="form-group">
                   <label>Stream</label>
-                  <select class="form-control select-option" name="stream">
+                  <select class="form-control" name="stream">
                     <option value="">Select Stream</option>
                   </select>
                 </div>
@@ -191,7 +188,7 @@ class LeadManagement extends React.Component {
               <div class="col-lg-6 col-sm-6 col-xs-12">
                 <div class="form-group">
                   <label>Course</label>
-                  <select class="form-control select-option" name="course">
+                  <select class="form-control" name="course">
                     <option value="">Select Course</option>
                   </select>
                 </div>
@@ -267,7 +264,7 @@ class LeadManagement extends React.Component {
                   <label>Balance Status </label>
                   <input
                     type="text"
-                    name=""
+                    name="balance_status"
                     class="form-control"
                     placeholder="Enter"
                   />
@@ -291,7 +288,7 @@ class LeadManagement extends React.Component {
                     id="addressTextarea"
                     class="form-control"
                     rows="3"
-                    name="about"
+                    name="additional_field"
                     placeholder="Enter text"
                   ></textarea>
                 </div>
@@ -592,16 +589,6 @@ class LeadManagement extends React.Component {
                           <option value="">Raj Kumar</option>
                         </select>
                       </td>
-                      {/* <td>
-                        <select class="form-control">
-                          <option value="">Select</option>
-                          <option value="">Neeraj</option>
-                          <option value="">Devesh</option>
-                          <option value="" selected>
-                            Raj Kumar
-                          </option>
-                        </select>
-                      </td> */}
                       <td>
                         <select class="form-control">
                           <option value="">Select</option>

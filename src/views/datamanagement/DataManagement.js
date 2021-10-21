@@ -1046,7 +1046,7 @@ class DataManagement extends React.Component {
                     <label>Fee Affordability Total Cost UG</label>
                     <input
                       type="text"
-                      name="affordability_cost_ug"
+                      name="affordability_total_cost_ug"
                       id="affordability_cost_ug"
                       class="form-control"
                       placeholder="Enter fee affordability total cost ug"
@@ -1058,7 +1058,7 @@ class DataManagement extends React.Component {
                     <label>Fee Affordability Total Cost PG</label>
                     <input
                       type="text"
-                      name="affordability_cost_pg"
+                      name="affordability_total_cost_pg"
                       id="affordability_cost_pg"
                       class="form-control"
                       placeholder="Enter fee affordability total cost pg"
@@ -1117,7 +1117,7 @@ class DataManagement extends React.Component {
                     <label>Test Preparation Requirement (UG)</label>
                     <input
                       type="text"
-                      name="test_prep_ug"
+                      name="test_preparation_ug"
                       id="test_prep_ug"
                       class="form-control"
                       placeholder="Enter requirement test"
@@ -1129,7 +1129,7 @@ class DataManagement extends React.Component {
                     <label>Test Preparation Requirement (PG)</label>
                     <input
                       type="text"
-                      name="test_prep_pg"
+                      name="test_preparation_pg"
                       id="test_prep_pg"
                       class="form-control"
                       placeholder="Enter requirement test"
@@ -1185,7 +1185,7 @@ class DataManagement extends React.Component {
                     <label>Economic Overview Part Time Circle</label>
                     <input
                       type="text"
-                      name="economic_overview"
+                      name="economic_overview_part_time_circle[]"
                       id="economic_overview"
                       class="form-control"
                       placeholder="Enter economic overview part time circle"
@@ -1197,7 +1197,7 @@ class DataManagement extends React.Component {
                     <label>Economic Overview Part Time Circle In</label>
                     <input
                       type="text"
-                      name="economic_overview_in"
+                      name="economic_overview_part_time_circle_in[]"
                       id="economic_overview_in"
                       class="form-control"
                       placeholder="Enter economic overview part time circle In"
@@ -1209,7 +1209,7 @@ class DataManagement extends React.Component {
                     <label>Title</label>
                     <input
                       type="text"
-                      name="overview_title"
+                      name="overview_title[]"
                       id="overview_title"
                       class="form-control"
                       placeholder="Enter title"
@@ -1220,7 +1220,8 @@ class DataManagement extends React.Component {
                   <div class="form-group">
                     <label>Description</label>
                     <textarea
-                      id="overview_decs"
+                      id="overview_de"
+                      name="overview_description[]"
                       class="form-control"
                       placeholder="Enter description"
                       rows="3"
@@ -1281,7 +1282,7 @@ class DataManagement extends React.Component {
                     <label>Placement & Employment Graph Max</label>
                     <input
                       type="text"
-                      name="placement_employment_graph"
+                      name="placement_employment_graph_max"
                       id="placement_employment_graph"
                       class="form-control"
                       placeholder="Enter placement & employment graph max"
@@ -1337,7 +1338,7 @@ class DataManagement extends React.Component {
                     <label>Visa Application Process</label>
                     <input
                       type="text"
-                      name="visa_application"
+                      name="visa_application_process"
                       id="visa_application"
                       class="form-control"
                       placeholder="Enter visa application process"
@@ -1361,7 +1362,7 @@ class DataManagement extends React.Component {
                     <label>Visa Document Required</label>
                     <input
                       type="text"
-                      name="visa_doc"
+                      name="visa_document_required"
                       id="visa_doc"
                       class="form-control"
                       placeholder="Enter document required"
@@ -1373,7 +1374,7 @@ class DataManagement extends React.Component {
                     <label>Visa Document Remark</label>
                     <input
                       type="text"
-                      name="visa_doc_remark"
+                      name="visa_document_remark"
                       id="visa_doc_remark"
                       class="form-control"
                       placeholder="Enter document remark"
@@ -1405,7 +1406,7 @@ class DataManagement extends React.Component {
                     <label>Meta Keywords</label>
                     <input
                       type="text"
-                      name="meta_keywords"
+                      name="meta_keyword"
                       id="meta_keywords"
                       class="form-control"
                       placeholder="Enter meta keywords"
@@ -1438,7 +1439,7 @@ class DataManagement extends React.Component {
                     <label>Background Banner</label>
                     <input
                       type="file"
-                      name="banner"
+                      name="background_banner"
                       id="banner"
                       class="form-control"
                     />
@@ -1449,7 +1450,7 @@ class DataManagement extends React.Component {
                     <label>Banner Line Image</label>
                     <input
                       type="text"
-                      name="banner_line"
+                      name="background_banner_line"
                       id="banner_line"
                       class="form-control"
                       placeholder="Enter banner line."
@@ -1552,8 +1553,8 @@ class DataManagement extends React.Component {
                   <div class="form-group">
                     <label>&#160;</label>
                     <br />
-                    <input type="checkbox" name="top_chance" /> Check My Chance
-                    Top
+                    <input type="checkbox" name="check_my_chance" /> Check My
+                    Chance Top
                   </div>
                 </div>
                 <div class="col-lg-6 col-sm-6 col-xs-12">
@@ -1577,7 +1578,7 @@ class DataManagement extends React.Component {
                     <label>Country Footer Banner</label>
                     <input
                       type="file"
-                      name="country_footer"
+                      name="country_footer_banner"
                       class="form-control"
                     />
                   </div>
@@ -1589,7 +1590,7 @@ class DataManagement extends React.Component {
                     </label>
                     <input
                       type="text"
-                      name="eligibility_nexam_requirement_ug"
+                      name="eligibility_exam_score_academic_requirement_ug"
                       class="form-control"
                       placeholder="Enter eligibility exam score academic requirement ug"
                     />
@@ -1602,7 +1603,7 @@ class DataManagement extends React.Component {
                     </label>
                     <input
                       type="text"
-                      name="eligibility_nexam_requirement_pg"
+                      name="eligibility_exam_score_academic_requirement_pg"
                       class="form-control"
                       placeholder="Enter eligibility exam score academic requirement pg"
                     />
@@ -1615,7 +1616,7 @@ class DataManagement extends React.Component {
                     </label>
                     <input
                       type="text"
-                      name="eligibility_nexam_test_ug"
+                      name="eligibility_exam_score_prep_requirement_ug"
                       class="form-control"
                       placeholder="Enter eligibility exam score test prep requirement ug"
                     />
@@ -1628,7 +1629,7 @@ class DataManagement extends React.Component {
                     </label>
                     <input
                       type="text"
-                      name="eligibility_nexam_test_pg"
+                      name="eligibility_exam_score_prep_requirement_pg"
                       class="form-control"
                       placeholder="Enter eligibility exam score test prep requirement pg"
                     />
@@ -1639,7 +1640,7 @@ class DataManagement extends React.Component {
                     <label>Eligibility Exam Score One Year Cost</label>
                     <input
                       type="text"
-                      name="eligibility_nexam_year_cost"
+                      name="eligibility_exam_score_year_cost"
                       class="form-control"
                       placeholder="Enter eligibility exam score one year cost"
                     />
@@ -1650,7 +1651,7 @@ class DataManagement extends React.Component {
                     <label>Economic Overview Part Time Job Circle</label>
                     <input
                       type="text"
-                      name="economic_overview"
+                      name="economic_overview_part_time_job_circle"
                       class="form-control"
                       placeholder="Enter economic overview part time job circle"
                     />
@@ -1661,7 +1662,7 @@ class DataManagement extends React.Component {
                     <label>Economic Overview Part Time Job Circle in 1</label>
                     <input
                       type="text"
-                      name="economic_overview_circle1"
+                      name="economic_overview_part_time_job_circle_in"
                       class="form-control"
                       placeholder="Enter economic overview part time job circle in 1"
                     />
@@ -1672,7 +1673,7 @@ class DataManagement extends React.Component {
                     <label>Economic Overview Part Time Job Text</label>
                     <input
                       type="text"
-                      name="economic_part_time_text"
+                      name="economic_part_time_job_text"
                       class="form-control"
                       placeholder="Enter economic overview part time job text"
                     />
@@ -1683,7 +1684,7 @@ class DataManagement extends React.Component {
                     <label>Economic Overview Post Study Circle</label>
                     <input
                       type="text"
-                      name="economic_post_study"
+                      name="economic_overview_post_study_circle"
                       class="form-control"
                       placeholder="Enter economic overview post study circle"
                     />
@@ -1694,7 +1695,7 @@ class DataManagement extends React.Component {
                     <label>Economic Overview Post Study Circle In</label>
                     <input
                       type="text"
-                      name="economic_post_study_circle"
+                      name="economic_overview_post_study_circle_in"
                       class="form-control"
                       placeholder="Enter economic overview post study circle in"
                     />
@@ -1705,7 +1706,7 @@ class DataManagement extends React.Component {
                     <label>Economic Overview Post Study Text</label>
                     <input
                       type="text"
-                      name="economic_post_study_text"
+                      name="economic_overview_post_study_text"
                       class="form-control"
                       placeholder="Enter economic overview post study text"
                     />
@@ -1716,7 +1717,7 @@ class DataManagement extends React.Component {
                     <label>Economic Overview Highest Paying Jobs Text</label>
                     <input
                       type="text"
-                      name="economic_overview_jobs"
+                      name="economic_overview_highest_paying_job_text"
                       class="form-control"
                       placeholder="Enter economic overview highest paying jobs text"
                     />
@@ -1727,7 +1728,7 @@ class DataManagement extends React.Component {
                     <label>Economic Overview Highest Paying Jobs Circle</label>
                     <input
                       type="text"
-                      name="economic_overview_jobs_circle"
+                      name="economic_overview_highest_paying_job_circle"
                       class="form-control"
                       placeholder="Enter economic overview highest paying jobs Circle"
                     />
@@ -1740,7 +1741,7 @@ class DataManagement extends React.Component {
                     </label>
                     <input
                       type="text"
-                      name="economic_overview_jobs_circle_in"
+                      name="economic_overview_highest_paying_job_circle_in"
                       class="form-control"
                       placeholder="Enter economic overview highest paying jobs Circle in"
                     />
@@ -1751,7 +1752,7 @@ class DataManagement extends React.Component {
                     <label>Economic Overview Min Wage Circle</label>
                     <input
                       type="text"
-                      name="economic_overview_minwage"
+                      name="economic_overview_min_wage_circle"
                       class="form-control"
                       placeholder="Enter economic overview min wage circle"
                     />
@@ -1762,7 +1763,7 @@ class DataManagement extends React.Component {
                     <label>Economic Overview Min Wage Circle In</label>
                     <input
                       type="text"
-                      name="economic_overview_minwage_in"
+                      name="economic_overview_min_wage_circle_in"
                       class="form-control"
                       placeholder="Enter economic overview min wage circle in"
                     />
@@ -1773,7 +1774,7 @@ class DataManagement extends React.Component {
                     <label>Economic Overview Min Wage Text</label>
                     <input
                       type="text"
-                      name="economic_overview_text"
+                      name="economic_overview_min_wage_text"
                       class="form-control"
                       placeholder="Enter economic overview min wage text"
                     />
@@ -1813,7 +1814,7 @@ class DataManagement extends React.Component {
                     <label>University Name</label>
                     <input
                       type="text"
-                      name="name"
+                      name="university_name"
                       class="form-control"
                       placeholder="Enter university name"
                       id="university"
@@ -1825,7 +1826,7 @@ class DataManagement extends React.Component {
                     <label>University Cover Image</label>
                     <input
                       type="file"
-                      name="university_image"
+                      name="university_cover_image"
                       class="form-control"
                       id="university_image"
                     />
@@ -1859,7 +1860,7 @@ class DataManagement extends React.Component {
                     <label>University Code</label>
                     <input
                       type="text"
-                      name="mobile"
+                      name="university_code"
                       class="form-control number"
                       placeholder="Enter university code"
                       id="uni_code"
@@ -1896,7 +1897,7 @@ class DataManagement extends React.Component {
                     <label>Minimum Marks for Admission</label>
                     <input
                       type="text"
-                      name="min_marks"
+                      name="min_marks_for_admission"
                       class="form-control number"
                       placeholder="Enter Minimum marks for admission"
                       id="marks"
@@ -1918,7 +1919,11 @@ class DataManagement extends React.Component {
                 <div class="col-lg-6 col-sm-6 col-xs-12">
                   <div class="form-group">
                     <label>University Type</label>
-                    <select class="form-control" name="county" id="uni_type">
+                    <select
+                      class="form-control"
+                      name="university_type"
+                      id="uni_type"
+                    >
                       <option value="">Select Type</option>
                       <option value="">Affiliated</option>
                       <option value="">Government</option>
@@ -1932,7 +1937,7 @@ class DataManagement extends React.Component {
                     <label>Student Population</label>
                     <input
                       type="text"
-                      name="s_population"
+                      name="student_population"
                       class="form-control"
                       placeholder="Enter student population"
                       id="population"
@@ -1968,7 +1973,7 @@ class DataManagement extends React.Component {
                     <label>Average Cost of Attendance</label>
                     <input
                       type="text"
-                      name="attendance_cost"
+                      name="average_attendance_cost"
                       class="form-control"
                       placeholder="Enter average cost of attendance"
                       id="attendance_cost"
@@ -1980,7 +1985,7 @@ class DataManagement extends React.Component {
                     <label>Student : Faculty Ratio</label>
                     <input
                       type="text"
-                      name="faculty_ratio"
+                      name="student_faculty_ratio"
                       class="form-control"
                       placeholder="Enter student faculty ration Ex. 24:1"
                       id="faculty_ratio"
@@ -1990,7 +1995,11 @@ class DataManagement extends React.Component {
                 <div class="col-lg-6 col-sm-6 col-xs-12">
                   <div class="form-group">
                     <label>Country</label>
-                    <select class="form-control" name="county" id="uni_country">
+                    <select
+                      class="form-control"
+                      name="university_county"
+                      id="uni_country"
+                    >
                       <option value="">Select Country</option>
                     </select>
                   </div>
@@ -2000,7 +2009,7 @@ class DataManagement extends React.Component {
                     <label>University State</label>
                     <select
                       class="form-control"
-                      name="uni_state"
+                      name="university_state"
                       id="uni_state"
                     >
                       <option value="">Select State</option>
@@ -2010,7 +2019,11 @@ class DataManagement extends React.Component {
                 <div class="col-lg-6 col-sm-6 col-xs-12">
                   <div class="form-group">
                     <label>City</label>
-                    <select class="form-control" name="uni_city" id="uni_city">
+                    <select
+                      class="form-control"
+                      name="university_city"
+                      id="uni_city"
+                    >
                       <option value="">Select City</option>
                     </select>
                   </div>
@@ -2103,20 +2116,30 @@ class DataManagement extends React.Component {
                   <div class="form-group">
                     <label>Amenities</label>
                     <br />
-                    <input type="checkbox" name="bank" id="bank" class="mr-r" />
+                    <input
+                      type="checkbox"
+                      name="amenities[]"
+                      id="bank"
+                      class="mr-r"
+                    />
                     <span class="mr-r">Bank</span>
-                    <input type="checkbox" name="food" id="food" class="mr-r" />
+                    <input
+                      type="checkbox"
+                      name="amenities[]"
+                      id="food"
+                      class="mr-r"
+                    />
                     <span class="mr-r">Food</span>
                     <input
                       type="checkbox"
-                      name="health"
+                      name="amenities[]"
                       id="health"
                       class="mr-r"
                     />
                     <span class="mr-r">Healthcare</span>
                     <input
                       type="checkbox"
-                      name="commute"
+                      name="amenities[]"
                       id="commute"
                       class="mr-r"
                     />
@@ -2130,7 +2153,7 @@ class DataManagement extends React.Component {
                       id="accommodation_details"
                       class="form-control"
                       rows="3"
-                      name="accommodation_details"
+                      name="accommodation_detail"
                       placeholder="Enter accommodation details"
                     ></textarea>
                   </div>
@@ -2212,7 +2235,7 @@ class DataManagement extends React.Component {
                     <label>Average Living Expense</label>
                     <input
                       type="text"
-                      name="living_expense"
+                      name="average_living_expense"
                       id="living_expense"
                       class="form-control"
                       placeholder="Enter average living expense"
@@ -2224,7 +2247,7 @@ class DataManagement extends React.Component {
                     <label>Trending Points</label>
                     <input
                       type="text"
-                      name="trending_points"
+                      name="trending_point"
                       id="trending_points"
                       class="form-control"
                       placeholder="Enter trending points"
@@ -2236,7 +2259,7 @@ class DataManagement extends React.Component {
                     <label>Analytic Points</label>
                     <input
                       type="text"
-                      name="analytic_points"
+                      name="analytic_point"
                       id="analytic_points"
                       class="form-control"
                       placeholder="Enter analytic points"
@@ -2300,6 +2323,7 @@ class DataManagement extends React.Component {
                   <div class="form-group">
                     <label>Meta Description</label>
                     <CKEditor
+                      name="meta_description"
                       editor={ClassicEditor}
                       onInit={(editor) => {
                         //// this inializes our application
@@ -2370,7 +2394,7 @@ class DataManagement extends React.Component {
                         <label>Course Name Alias</label>
                         <input
                           type="text"
-                          name="alias1"
+                          name="course_alias_name"
                           id="alias1"
                           class="form-control"
                           placeholder="Enter course name alias"
@@ -2404,7 +2428,11 @@ class DataManagement extends React.Component {
                     <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-group">
                         <label>Application Deadline</label>
-                        <input type="date" id="deadline" class="form-control" />
+                        <input
+                          type="date"
+                          id="application_deadline"
+                          class="form-control"
+                        />
                       </div>
                     </div>
                   </div>
@@ -2434,7 +2462,7 @@ class DataManagement extends React.Component {
                     <label>Academic Details</label>
                     <input
                       type="text"
-                      name="academic_details"
+                      name="academic_detail"
                       id="academic_details"
                       class="form-control"
                       placeholder="Enter academic details"
@@ -2458,7 +2486,7 @@ class DataManagement extends React.Component {
                     <label>Tuition Fee</label>
                     <input
                       type="text"
-                      name="tuition"
+                      name="tuition_fee"
                       id="tuition"
                       class="form-control"
                       placeholder="Enter tuition"
@@ -2470,7 +2498,7 @@ class DataManagement extends React.Component {
                     <label>LOR | SOP</label>
                     <input
                       type="text"
-                      name="lor"
+                      name="lor_sop"
                       id="lor"
                       class="form-control"
                       placeholder="Enter requirement"
@@ -2530,7 +2558,7 @@ class DataManagement extends React.Component {
                     <label>Scholarships Details</label>
                     <input
                       type="text"
-                      name="scholarship_details"
+                      name="scholarship_detail"
                       id="scholarship_details"
                       class="form-control"
                       placeholder="Enter scholarship details"
@@ -2555,7 +2583,7 @@ class DataManagement extends React.Component {
                     <label>Internship co op Details</label>
                     <input
                       type="text"
-                      name="internship_co_op_details"
+                      name="internship_co_op_detail"
                       class="form-control"
                       placeholder="Enter internship co op details"
                     />
@@ -2576,7 +2604,7 @@ class DataManagement extends React.Component {
                 <div class="col-lg-12 col-sm-12 col-xs-12">
                   <div class="form-group">
                     <label>Option Available</label>
-                    <select class="form-control">
+                    <select class="form-control" name="available_option">
                       <option>Select</option>
                     </select>
                   </div>

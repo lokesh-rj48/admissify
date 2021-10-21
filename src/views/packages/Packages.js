@@ -47,7 +47,7 @@ class Packages extends React.Component {
                   <label>Package Name</label>
                   <input
                     type="text"
-                    name="title"
+                    name="package_name"
                     class="form-control"
                     placeholder="Enter package name"
                   />
@@ -67,7 +67,7 @@ class Packages extends React.Component {
               <div class="col-lg-12 col-sm-12 col-xs-12">
                 <div class="form-group">
                   <label>Package Type</label>
-                  <select class="form-control">
+                  <select class="form-control" name="package_type">
                     <option value="">Select Type</option>
                     <option value="">Third Party</option>
                     <option value="">Admissify</option>
@@ -81,7 +81,7 @@ class Packages extends React.Component {
                     id="addressTextarea"
                     class="form-control"
                     rows="3"
-                    name="about"
+                    name="additional_field"
                     placeholder="Enter text"
                   ></textarea>
                 </div>

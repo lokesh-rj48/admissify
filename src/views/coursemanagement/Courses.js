@@ -80,9 +80,8 @@ class Courses extends React.Component {
     //initialize datatable
     $(document).ready(function () {
       $("#example").DataTable();
-      //$("#example1").DataTable();
-      //$("#example2").DataTable();
     });
+
     $("body").on("click", ".remove", function () {
       $(this).closest("div").remove();
     });
@@ -102,6 +101,7 @@ class Courses extends React.Component {
       courseDesc: "",
       courseStream: "",
       courseName: "",
+      file: "",
     };
   }
   handleModel() {
@@ -140,14 +140,21 @@ class Courses extends React.Component {
       evt.preventDefault();
     }
 
+    // const fileInput = document.querySelector("#fileInput");
+    // const formData = new FormData();
+    // formData.append("file", fileInput.files[0]);
+
     const postData = {
       masterName: this.state.courseLevel,
       masterCode: this.state.courseLevel.toLowerCase(),
       masterDesc: this.state.courseDesc,
+      // "master-img": formData.get("file"),
+      //"master-img": formData.get("file").name,
       masterGroup: "CourseLevel",
     };
-
     console.log("postData", postData);
+    // evt.preventDefault();
+    // return;
     axios
       .post(`http://localhost:8081/api/masters/add`, postData, {
         "Access-Control-Allow-Origin": "*",
@@ -284,12 +291,25 @@ class Courses extends React.Component {
                 </div>
                 <div class="col-lg-12 col-sm-12 col-xs-12">
                   <div class="form-group">
+                    <label>Course Image</label>
+                    <input
+                      id="fileInput"
+                      type="file"
+                      class="form-control"
+                      name="file"
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-12 col-sm-12 col-xs-12">
+                  <div class="form-group">
                     <label for="courseTextarea">Description</label>
                     <textarea
                       id="courseTextarea"
                       class="form-control"
                       rows="3"
                       name="courseDesc"
+                      onChange={(evt) => this.handleChange(evt)}
+                      defaultValue={this.state.courseDesc}
                       placeholder="Enter about course level"
                     ></textarea>
                   </div>
@@ -523,7 +543,7 @@ class Courses extends React.Component {
                                         courseLevelList.length > 0 &&
                                         courseLevelList.map((data, key) => {
                                           return (
-                                            <tr>
+                                            <tr key={key}>
                                               <td>{++key}</td>
                                               <td>{data.MasterName}</td>
                                               <td>

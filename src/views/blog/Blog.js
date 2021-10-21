@@ -86,7 +86,7 @@ class Blog extends React.Component {
                 <div class="col-lg-12 col-sm-12 col-xs-12">
                   <div class="form-group">
                     <label>Blog Category</label>
-                    <select className="form-control">
+                    <select className="form-control" name="blog_category">
                       <option value="">Select</option>
                     </select>
                   </div>
@@ -96,7 +96,7 @@ class Blog extends React.Component {
                     <label>Heading</label>
                     <input
                       type="text"
-                      name="discussion_category"
+                      name="title"
                       class="form-control"
                       placeholder="Enter blog heading"
                     />
@@ -139,7 +139,7 @@ class Blog extends React.Component {
                     <label>Category</label>
                     <input
                       type="text"
-                      name="discussion_category"
+                      name="category"
                       class="form-control"
                       placeholder="Enter category name"
                     />
@@ -152,7 +152,7 @@ class Blog extends React.Component {
                       id="addressTextarea"
                       class="form-control"
                       rows="3"
-                      name="about"
+                      name="additional_field"
                       placeholder="Enter text"
                     ></textarea>
                   </div>

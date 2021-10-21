@@ -169,7 +169,7 @@ class Calling extends React.Component {
                       id="addressTextarea"
                       class="form-control"
                       rows="3"
-                      name="about"
+                      name="additional_field"
                       placeholder="Enter text"
                     ></textarea>
                   </div>

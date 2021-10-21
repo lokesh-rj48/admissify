@@ -10,6 +10,7 @@ const EditBlogCategory = React.lazy(() =>
 const EditUserRole = React.lazy(() =>
   import("./views/user/userrole/EditUserRole")
 );
+const Permission = React.lazy(() => import("./views/user/userrole/Permission"));
 const Datadashboard = React.lazy(() =>
   import("./views/datamanagement/Datadashboard")
 );
@@ -192,6 +193,11 @@ const routes = [
     path: "/admin/build/edit-user-role",
     name: "Edit User Role",
     component: EditUserRole,
+  },
+  {
+    path: "/admin/build/user-permission",
+    name: "User Permission",
+    component: Permission,
   },
   {
     path: "/admin/build/counsellor",

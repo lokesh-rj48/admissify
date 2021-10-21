@@ -203,13 +203,11 @@ button.btn-default {
     border-color: #ccc;
 }
 
-input:not(.lfContainer input), textarea :not(.lfContainer textarea) {
+/* input:not(.lfContainer input), textarea :not(.lfContainer textarea) {
     border-radius: 2px;
     padding: 5px;
-    border: 0;
     font-size: 12px;
-    border-bottom: 1px solid #CCC;
-}
+} */
 
 label {
     color: #8e8e8e;
