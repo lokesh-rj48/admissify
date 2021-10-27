@@ -144,6 +144,30 @@ class EditCourse extends React.Component {
                   </div>
                   <div class="col-lg-12 col-sm-12 col-xs-12">
                     <div class="form-group">
+                      <label for="courseTextarea">Specialization</label>
+                      <textarea
+                        id="courseTextarea"
+                        class="form-control"
+                        rows="3"
+                        name="specialization"
+                        placeholder="Enter specialization"
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                      <label for="courseTextarea">Scope</label>
+                      <textarea
+                        id="courseTextarea"
+                        class="form-control"
+                        rows="3"
+                        name="scope"
+                        placeholder="Enter course Scope"
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
                       <label for="courseTextarea">Description</label>
                       <textarea
                         id="courseTextarea"

@@ -24,6 +24,24 @@ a:hover {
     height: auto;
 }
 
+span.label.label-lg.label-light-success.label-inline {
+    color: #119790;
+    background-color: #C9F7F5;
+    padding: 0.15rem 0.75rem;
+    border-radius: 0.42rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    height: 24px;
+}
+
+span.label.label-lg.label-light-danger.label-inline {
+    color: #F64E60;
+    background-color: #FFE2E5;
+    padding: 0.15rem 0.75rem !important;
+    border-radius: 0.42rem;
+    font-weight: 500;
+}
+
 .icon-dv {
     margin-bottom: 0px;
     position: relative;

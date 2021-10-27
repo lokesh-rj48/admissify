@@ -24,14 +24,58 @@ class EditLocation extends React.Component {
                 <div class="box-body">
                   <div class="col-lg-12 col-sm-12 col-xs-12">
                     <div class="form-group">
-                      <label>Name</label>
+                      <label>Title</label>
                       <input
                         type="text"
-                        name="name"
-                        placeholder="Enter course name"
+                        name="title"
+                        placeholder="Enter title"
                         class="form-control"
-                        id="name"
+                        id="title"
                       />
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                      <label>Phone Number</label>
+                      <input
+                        type="tel"
+                        name="phone_number"
+                        placeholder="Enter phone number"
+                        class="form-control"
+                        id="phone_number"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                      <label>Pincode</label>
+                      <input
+                        type="tel"
+                        name="pincode"
+                        placeholder="Enter pincode"
+                        class="form-control number"
+                        id="pincode"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                      <label>Location</label>
+                      <input
+                        type="text"
+                        name="location"
+                        placeholder="Enter location"
+                        class="form-control"
+                        id="location"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                      <label>City</label>
+                      <select className="form-control">
+                        <option value="">Select</option>
+                      </select>
                     </div>
                   </div>
                   <div class="col-lg-12 col-sm-12 col-xs-12">

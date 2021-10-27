@@ -414,19 +414,36 @@ class EditCounsellor extends React.Component {
                                   </div>
                                   <div class="col-lg-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
+                                      <label>University</label>
+                                      <select
+                                        class="form-control"
+                                        name="university"
+                                      >
+                                        <option value="">Select</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
                                       <label>City</label>
                                       <select class="form-control ">
                                         <option value="">Select City</option>
                                       </select>
                                     </div>
                                   </div>
-                                  <div class="col-lg-6 col-sm-6 col-xs-12">
+                                  <div class="col-lg-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                       <label>Counsellor Status</label>
-                                      <Multiselect
-                                        options={this.state.options}
-                                        displayValue="status"
-                                      />
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                      <input type="checkbox" value="1" />{" "}
+                                      Admissify Certified{" "}
+                                      <input type="checkbox" value="1" />{" "}
+                                      Admissify Verified{" "}
+                                      <input type="checkbox" value="1" />{" "}
+                                      Premium
                                     </div>
                                   </div>
                                   <div class="col-lg-12 col-sm-12 col-xs-12">

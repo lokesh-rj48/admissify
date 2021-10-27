@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 //Bootstrap and jQuery libraries
 import { Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Url from "../../components/URL/Url";
 import "jquery/dist/jquery.min.js";
 import "././country/Style.css";
 //Datatable Modules
@@ -22,20 +23,62 @@ import {
   CCardBody,
   CTabs,
 } from "@coreui/react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+const axios = require("axios");
 class DataManagement extends React.Component {
   componentDidMount() {
     //initialize datatable
     $(document).ready(function () {
-      $("#example").DataTable();
+      setTimeout(() => {
+        $("#example").DataTable();
+        $("#example1").DataTable();
+        $("#example2").DataTable();
+      }, 100);
     });
     $(document).on("input", ".number", function () {
       this.value = this.value.replace(/\D/g, "");
     });
-    // $("#btnAdd").on("click", function () {});
-    // $("#btnAdd2").on("click", function () {});
     $("body").on("click", ".annual_btn", function () {
       $(this).closest("div").remove();
     });
+
+    console.log("cors error");
+    //For Get All Country
+    axios
+      .get(Url + `api/country/getAllCountry`)
+      .then((res) => {
+        console.log("res", res);
+        this.setState({ countryList: res.data.data });
+      })
+      .catch((err) => {
+        //console.log("err",err)
+        toast.error("Error occurred at API end (" + err.message + ")");
+      });
+
+    //For Get All State
+    axios
+      .get(Url + `api/state/getAllState`)
+      .then((res) => {
+        console.log("res", res);
+        this.setState({ stateList: res.data.data });
+      })
+      .catch((err) => {
+        //console.log("err",err)
+        toast.error("Error occurred at API end (" + err.message + ")");
+      });
+
+    //For Get All City
+    axios
+      .get(Url + `api/city/getAllCity`)
+      .then((res) => {
+        console.log("res", res);
+        this.setState({ cityList: res.data.data });
+      })
+      .catch((err) => {
+        //console.log("err",err)
+        toast.error("Error occurred at API end (" + err.message + ")");
+      });
   }
   GetDynamicEconomicOverview() {
     var div = $("<div />");
@@ -59,6 +102,17 @@ class DataManagement extends React.Component {
       show4: false,
       show5: false,
       show6: false,
+      countryList: [],
+      stateList: [],
+      cityList: [],
+      country_name: "",
+      code: "",
+      country_short_name: "",
+      flag: "",
+      description: "",
+      slug: "",
+      country_id: "",
+      name: "",
     };
   }
   handleModel() {
@@ -79,72 +133,154 @@ class DataManagement extends React.Component {
   handleModel6() {
     this.setState({ show6: !this.state.show6 });
   }
+  handleChange(evt) {
+    this.setState({
+      [evt.target.name]: evt.target.value,
+    });
+  }
 
+  //Country Active Inactive Status
+  activeInactiveCountry(evt, status, id) {
+    if (status == 1) {
+      status = 0;
+    } else {
+      status = 1;
+    }
+    const r = window.confirm("Do you want to change status ?");
+    if (r == true) {
+      const postData = {
+        status: status,
+      };
+      axios
+        .put(Url + `api/country/updateCountry/${id}`, postData)
+        .then((res) => {
+          console.log("res", res);
+          toast.success(res.data.message);
+          window.location.reload();
+        })
+        .catch((err) => {
+          //console.log("err",err)
+          toast.error("Error occured at API end (" + err.message + ")");
+        });
+    }
+  }
+
+  //State Active Inactive Status
+  activeInactiveState(evt, status, id) {
+    if (status == 1) {
+      status = 0;
+    } else {
+      status = 1;
+    }
+    const r = window.confirm("Do you want to change status ?");
+    if (r == true) {
+      const postData = {
+        status: status,
+      };
+      axios
+        .put(Url + `api/state/update/${id}`, postData)
+        .then((res) => {
+          toast.success(res.data.message);
+          window.location.reload();
+        })
+        .catch((err) => {
+          //console.log("err",err)
+          toast.error("Error occured at API end (" + err.message + ")");
+        });
+    }
+  }
+
+  //City Active Inactive Status
+  activeInactiveCity(evt, status, city_id) {
+    if (status == 1) {
+      status = 0;
+    } else {
+      status = 1;
+    }
+    const r = window.confirm("Do you want to change status ?");
+    if (r == true) {
+      const postData = {
+        status: status,
+      };
+      axios
+        .put(Url + `api/city/update/${city_id}`, postData)
+        .then((res) => {
+          toast.success(res.data.message);
+          window.location.reload();
+        })
+        .catch((err) => {
+          //console.log("err",err)
+          toast.error("Error occured at API end (" + err.message + ")");
+        });
+    }
+  }
+
+  //Country Insertion
   countryValidations(evt) {
     $(".error-class").remove();
     var CountryName = $("#country_name").val();
     var CountryCode = $("#country_code").val();
     var CountrySortCode = $("#country_sort_code").val();
     var CountryLogo = $("#country_flag").val();
-    var FeaturesImages = $("#feature_image").val();
+    //var FeaturesImages = $("#feature_image").val();
     var countryTextarea = $("#countryTextarea").val();
-    var country_scholarships = $("#country_scholarships").val();
-    var percent = $("#percent").val();
-    var accommodation = $("#accommodation").val();
-    var inr = $("#inr").val();
-    var exchange_rate = $("#exchange_rate").val();
-    var affordability_exchange_sub_title = $(
-      "#affordability_exchange_sub_title"
-    ).val();
-    var affordability_total_year_cost = $(
-      "#affordability_total_year_cost"
-    ).val();
-    var affordability_tuition_fee_ug = $("#affordability_tuition_fee_ug").val();
-    var affordability_tuition_fee_pg = $("#affordability_tuition_fee_pg").val();
-    var affordability_cost_ug = $("#affordability_cost_ug").val();
-    var affordability_cost_pg = $("#affordability_cost_pg").val();
-    var affordability_ang_living_expense = $(
-      "#affordability_ang_living_expense"
-    ).val();
-    var academic_requirements_ug = $("#academic_requirements_ug").val();
-    var academic_requirements_pg = $("#academic_requirements_pg").val();
-    var test_prep_ug = $("#test_prep_ug").val();
-    var test_prep_pg = $("#test_prep_pg").val();
-    var english_proficiency_toefl = $("#english_proficiency_toefl").val();
-    var english_proficiency_ielts = $("#english_proficiency_ielts").val();
-    var english_proficiency_pte = $("#english_proficiency_pte").val();
-    var economic_overview = $("#economic_overview").val();
-    var economic_overview_in = $("#economic_overview_in").val();
-    var overview_title = $("#overview_title").val();
-    var overview_decs = $("#overview_decs").val();
-    var placement_title = $("#placement_title").val();
-    var placement_employment_text = $("#placement_employment_text").val();
-    var placement_employment_graph = $("#placement_employment_graph").val();
-    var placement_employment_graph_med = $(
-      "#placement_employment_graph_med"
-    ).val();
-    var placement_employment_graph_low = $(
-      "#placement_employment_graph_low"
-    ).val();
-    var visa_application = $("#visa_application").val();
-    var placement_employment_graph_desc = $(
-      "#placement_employment_graph_desc"
-    ).val();
-    var visa_fee = $("#visa_fee").val();
-    var visa_doc = $("#visa_doc").val();
-    var visa_doc_remark = $("#visa_doc_remark").val();
-    var meta_title = $("#meta_title").val();
-    var meta_keywords = $("#meta_keywords").val();
-    var meta_description = $("#meta_description").val();
-    var banner = $("#banner").val();
-    var banner_line = $("#banner_line").val();
-    var visa_text = $("#visa_text").val();
-    var degree_text = $("#degree_text").val();
-    var scholar_text = $("#scholar_text").val();
-    var rank_text = $("#rank_text").val();
-    var work_text = $("#work_text").val();
-    var accommodation_text = $("#accommodation_text").val();
-    var know_more = $("#know_more").val();
+    // var country_scholarships = $("#country_scholarships").val();
+    // var percent = $("#percent").val();
+    // var accommodation = $("#accommodation").val();
+    // var inr = $("#inr").val();
+    // var exchange_rate = $("#exchange_rate").val();
+    // var affordability_exchange_sub_title = $(
+    //   "#affordability_exchange_sub_title"
+    // ).val();
+    // var affordability_total_year_cost = $(
+    //   "#affordability_total_year_cost"
+    // ).val();
+    // var affordability_tuition_fee_ug = $("#affordability_tuition_fee_ug").val();
+    // var affordability_tuition_fee_pg = $("#affordability_tuition_fee_pg").val();
+    // var affordability_cost_ug = $("#affordability_cost_ug").val();
+    // var affordability_cost_pg = $("#affordability_cost_pg").val();
+    // var affordability_ang_living_expense = $(
+    //   "#affordability_ang_living_expense"
+    // ).val();
+    // var academic_requirements_ug = $("#academic_requirements_ug").val();
+    // var academic_requirements_pg = $("#academic_requirements_pg").val();
+    // var test_prep_ug = $("#test_prep_ug").val();
+    // var test_prep_pg = $("#test_prep_pg").val();
+    // var english_proficiency_toefl = $("#english_proficiency_toefl").val();
+    // var english_proficiency_ielts = $("#english_proficiency_ielts").val();
+    // var english_proficiency_pte = $("#english_proficiency_pte").val();
+    // var economic_overview = $("#economic_overview").val();
+    // var economic_overview_in = $("#economic_overview_in").val();
+    // var overview_title = $("#overview_title").val();
+    // var overview_decs = $("#overview_decs").val();
+    // var placement_title = $("#placement_title").val();
+    // var placement_employment_text = $("#placement_employment_text").val();
+    // var placement_employment_graph = $("#placement_employment_graph").val();
+    // var placement_employment_graph_med = $(
+    //   "#placement_employment_graph_med"
+    // ).val();
+    // var placement_employment_graph_low = $(
+    //   "#placement_employment_graph_low"
+    // ).val();
+    // var visa_application = $("#visa_application").val();
+    // var placement_employment_graph_desc = $(
+    //   "#placement_employment_graph_desc"
+    // ).val();
+    // var visa_fee = $("#visa_fee").val();
+    // var visa_doc = $("#visa_doc").val();
+    // var visa_doc_remark = $("#visa_doc_remark").val();
+    // var meta_title = $("#meta_title").val();
+    // var meta_keywords = $("#meta_keywords").val();
+    // var meta_description = $("#meta_description").val();
+    // var banner = $("#banner").val();
+    // var banner_line = $("#banner_line").val();
+    // var visa_text = $("#visa_text").val();
+    // var degree_text = $("#degree_text").val();
+    // var scholar_text = $("#scholar_text").val();
+    // var rank_text = $("#rank_text").val();
+    // var work_text = $("#work_text").val();
+    // var accommodation_text = $("#accommodation_text").val();
+    // var know_more = $("#know_more").val();
 
     if (!CountryName) {
       $("#country_name").after(
@@ -171,282 +307,309 @@ class DataManagement extends React.Component {
         );
       }
     }
-    if (typeof FeaturesImages !== "undefined") {
-      if (!FeaturesImages.match(/\.(jpg|jpeg|png|gif)$/)) {
-        $("#feature_image").after(
-          '<div class="error-class">Please upload jpg | jpeg | png | gif file.</div>'
-        );
-        evt.preventDefault();
-      }
-    }
+    // if (typeof FeaturesImages !== "undefined") {
+    //   if (!FeaturesImages.match(/\.(jpg|jpeg|png|gif)$/)) {
+    //     $("#feature_image").after(
+    //       '<div class="error-class">Please upload jpg | jpeg | png | gif file.</div>'
+    //     );
+    //     evt.preventDefault();
+    //   }
+    // }
     if (!countryTextarea) {
       $("#countryTextarea").after(
         '<div class="error-class">Enter about.</div>'
       );
       evt.preventDefault();
     }
-    if (!country_scholarships) {
-      $("#country_scholarships").after(
-        '<div class="error-class">Enter scholarship.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!percent) {
-      $("#percent").after(
-        '<div class="error-class">Enter scholarship percent.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!accommodation) {
-      $("#accommodation").after(
-        '<div class="error-class">Enter accommodation.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!inr) {
-      $("#inr").after(
-        '<div class="error-class">Enter accommodation charge per annum.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!exchange_rate) {
-      $("#exchange_rate").after(
-        '<div class="error-class">Enter exchange rate.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!affordability_exchange_sub_title) {
-      $("#affordability_exchange_sub_title").after(
-        '<div class="error-class">Enter affordability exchange sub title.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!affordability_total_year_cost) {
-      $("#affordability_total_year_cost").after(
-        '<div class="error-class">Enter affordability total year cost.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!affordability_tuition_fee_ug) {
-      $("#affordability_tuition_fee_ug").after(
-        '<div class="error-class">Enter affordability tuition fee ug.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!affordability_tuition_fee_pg) {
-      $("#affordability_tuition_fee_pg").after(
-        '<div class="error-class">Enter affordability tuition fee pg.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!affordability_cost_ug) {
-      $("#affordability_cost_ug").after(
-        '<div class="error-class">Enter affordability cost ug.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!affordability_cost_pg) {
-      $("#affordability_cost_pg").after(
-        '<div class="error-class">Enter affordability cost pg.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!affordability_ang_living_expense) {
-      $("#affordability_ang_living_expense").after(
-        '<div class="error-class">Enter affordability avg living expense.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!academic_requirements_ug) {
-      $("#academic_requirements_ug").after(
-        '<div class="error-class">Enter academic requirements ug.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!academic_requirements_pg) {
-      $("#academic_requirements_pg").after(
-        '<div class="error-class">Enter academic requirements pg.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!test_prep_ug) {
-      $("#test_prep_ug").after(
-        '<div class="error-class">Enter test preparation requirement ug.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!test_prep_pg) {
-      $("#test_prep_pg").after(
-        '<div class="error-class">Enter test preparation requirement pg.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!english_proficiency_toefl) {
-      $("#english_proficiency_toefl").after(
-        '<div class="error-class">Enter english proficiency TOEFL.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!english_proficiency_ielts) {
-      $("#english_proficiency_ielts").after(
-        '<div class="error-class">Enter english proficiency IELTS.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!english_proficiency_pte) {
-      $("#english_proficiency_pte").after(
-        '<div class="error-class">Enter english proficiency PTE.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!economic_overview) {
-      $("#economic_overview").after(
-        '<div class="error-class">Enter economic overview part time circle .</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!economic_overview_in) {
-      $("#economic_overview_in").after(
-        '<div class="error-class">Enter economic overview part time circle in.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!overview_title) {
-      $("#overview_title").after('<div class="error-class">Enter title.</div>');
-      evt.preventDefault();
-    }
-    if (!overview_decs) {
-      $("#overview_decs").after(
-        '<div class="error-class">Enter description.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!placement_title) {
-      $("#placement_title").after(
-        '<div class="error-class">Enter title.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!placement_employment_text) {
-      $("#placement_employment_text").after(
-        '<div class="error-class">Enter placement & employment text.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!placement_employment_graph) {
-      $("#placement_employment_graph").after(
-        '<div class="error-class">Enter placement & employment graph max.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!placement_employment_graph_med) {
-      $("#placement_employment_graph_med").after(
-        '<div class="error-class">Enter placement & employment graph med.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!placement_employment_graph_low) {
-      $("#placement_employment_graph_low").after(
-        '<div class="error-class">Enter placement & employment graph low.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!placement_employment_graph_desc) {
-      $("#placement_employment_graph_desc").after(
-        '<div class="error-class">Enter placement & employment graph desc.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!visa_application) {
-      $("#visa_application").after(
-        '<div class="error-class">Enter visa application process.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!visa_fee) {
-      $("#visa_fee").after('<div class="error-class">Enter visa fee.</div>');
-      evt.preventDefault();
-    }
-    if (!visa_doc) {
-      $("#visa_doc").after('<div class="error-class">Enter visa doc.</div>');
-      evt.preventDefault();
-    }
-    if (!visa_doc_remark) {
-      $("#visa_doc_remark").after(
-        '<div class="error-class">Enter document remark.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!meta_title) {
-      $("#meta_title").after(
-        '<div class="error-class">Enter meta title.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!meta_keywords) {
-      $("#meta_keywords").after(
-        '<div class="error-class">Enter meta keywords.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!meta_description) {
-      $("#meta_description").after(
-        '<div class="error-class">Enter meta description.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (typeof banner !== "undefined") {
-      if (!banner.match(/\.(jpg|jpeg|png|gif)$/)) {
-        $("#banner").after(
-          '<div class="error-class">Please upload jpg | jpeg | png | gif file.</div>'
-        );
-        evt.preventDefault();
-      }
-    }
-    if (!banner_line) {
-      $("#banner_line").after(
-        '<div class="error-class">Enter banner line.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!visa_text) {
-      $("#visa_text").after('<div class="error-class">Enter visa text.</div>');
-      evt.preventDefault();
-    }
-    if (!degree_text) {
-      $("#degree_text").after(
-        '<div class="error-class">Enter degree text.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!scholar_text) {
-      $("#scholar_text").after(
-        '<div class="error-class">Enter scholar text.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (!rank_text) {
-      $("#rank_text").after('<div class="error-class">Enter rank text.</div>');
-      evt.preventDefault();
-    }
-    if (!work_text) {
-      $("#work_text").after('<div class="error-class">Enter work text.</div>');
-      evt.preventDefault();
-    }
-    if (!accommodation_text) {
-      $("#accommodation_text").after(
-        '<div class="error-class">Enter accommodation text.</div>'
-      );
-      evt.preventDefault();
-    }
-    if (typeof know_more !== "undefined") {
-      if (!know_more.match(/\.(jpg|jpeg|png|gif)$/)) {
-        $("#know_more").after(
-          '<div class="error-class">Please upload jpg | jpeg | png | gif file.</div>'
-        );
-        evt.preventDefault();
-      }
-    }
+    // if (!country_scholarships) {
+    //   $("#country_scholarships").after(
+    //     '<div class="error-class">Enter scholarship.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!percent) {
+    //   $("#percent").after(
+    //     '<div class="error-class">Enter scholarship percent.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!accommodation) {
+    //   $("#accommodation").after(
+    //     '<div class="error-class">Enter accommodation.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!inr) {
+    //   $("#inr").after(
+    //     '<div class="error-class">Enter accommodation charge per annum.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!exchange_rate) {
+    //   $("#exchange_rate").after(
+    //     '<div class="error-class">Enter exchange rate.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!affordability_exchange_sub_title) {
+    //   $("#affordability_exchange_sub_title").after(
+    //     '<div class="error-class">Enter affordability exchange sub title.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!affordability_total_year_cost) {
+    //   $("#affordability_total_year_cost").after(
+    //     '<div class="error-class">Enter affordability total year cost.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!affordability_tuition_fee_ug) {
+    //   $("#affordability_tuition_fee_ug").after(
+    //     '<div class="error-class">Enter affordability tuition fee ug.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!affordability_tuition_fee_pg) {
+    //   $("#affordability_tuition_fee_pg").after(
+    //     '<div class="error-class">Enter affordability tuition fee pg.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!affordability_cost_ug) {
+    //   $("#affordability_cost_ug").after(
+    //     '<div class="error-class">Enter affordability cost ug.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!affordability_cost_pg) {
+    //   $("#affordability_cost_pg").after(
+    //     '<div class="error-class">Enter affordability cost pg.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!affordability_ang_living_expense) {
+    //   $("#affordability_ang_living_expense").after(
+    //     '<div class="error-class">Enter affordability avg living expense.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!academic_requirements_ug) {
+    //   $("#academic_requirements_ug").after(
+    //     '<div class="error-class">Enter academic requirements ug.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!academic_requirements_pg) {
+    //   $("#academic_requirements_pg").after(
+    //     '<div class="error-class">Enter academic requirements pg.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!test_prep_ug) {
+    //   $("#test_prep_ug").after(
+    //     '<div class="error-class">Enter test preparation requirement ug.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!test_prep_pg) {
+    //   $("#test_prep_pg").after(
+    //     '<div class="error-class">Enter test preparation requirement pg.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!english_proficiency_toefl) {
+    //   $("#english_proficiency_toefl").after(
+    //     '<div class="error-class">Enter english proficiency TOEFL.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!english_proficiency_ielts) {
+    //   $("#english_proficiency_ielts").after(
+    //     '<div class="error-class">Enter english proficiency IELTS.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!english_proficiency_pte) {
+    //   $("#english_proficiency_pte").after(
+    //     '<div class="error-class">Enter english proficiency PTE.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!economic_overview) {
+    //   $("#economic_overview").after(
+    //     '<div class="error-class">Enter economic overview part time circle .</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!economic_overview_in) {
+    //   $("#economic_overview_in").after(
+    //     '<div class="error-class">Enter economic overview part time circle in.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!overview_title) {
+    //   $("#overview_title").after('<div class="error-class">Enter title.</div>');
+    //   evt.preventDefault();
+    // }
+    // if (!overview_decs) {
+    //   $("#overview_decs").after(
+    //     '<div class="error-class">Enter description.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!placement_title) {
+    //   $("#placement_title").after(
+    //     '<div class="error-class">Enter title.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!placement_employment_text) {
+    //   $("#placement_employment_text").after(
+    //     '<div class="error-class">Enter placement & employment text.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!placement_employment_graph) {
+    //   $("#placement_employment_graph").after(
+    //     '<div class="error-class">Enter placement & employment graph max.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!placement_employment_graph_med) {
+    //   $("#placement_employment_graph_med").after(
+    //     '<div class="error-class">Enter placement & employment graph med.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!placement_employment_graph_low) {
+    //   $("#placement_employment_graph_low").after(
+    //     '<div class="error-class">Enter placement & employment graph low.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!placement_employment_graph_desc) {
+    //   $("#placement_employment_graph_desc").after(
+    //     '<div class="error-class">Enter placement & employment graph desc.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!visa_application) {
+    //   $("#visa_application").after(
+    //     '<div class="error-class">Enter visa application process.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!visa_fee) {
+    //   $("#visa_fee").after('<div class="error-class">Enter visa fee.</div>');
+    //   evt.preventDefault();
+    // }
+    // if (!visa_doc) {
+    //   $("#visa_doc").after('<div class="error-class">Enter visa doc.</div>');
+    //   evt.preventDefault();
+    // }
+    // if (!visa_doc_remark) {
+    //   $("#visa_doc_remark").after(
+    //     '<div class="error-class">Enter document remark.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!meta_title) {
+    //   $("#meta_title").after(
+    //     '<div class="error-class">Enter meta title.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!meta_keywords) {
+    //   $("#meta_keywords").after(
+    //     '<div class="error-class">Enter meta keywords.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!meta_description) {
+    //   $("#meta_description").after(
+    //     '<div class="error-class">Enter meta description.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (typeof banner !== "undefined") {
+    //   if (!banner.match(/\.(jpg|jpeg|png|gif)$/)) {
+    //     $("#banner").after(
+    //       '<div class="error-class">Please upload jpg | jpeg | png | gif file.</div>'
+    //     );
+    //     evt.preventDefault();
+    //   }
+    // }
+    // if (!banner_line) {
+    //   $("#banner_line").after(
+    //     '<div class="error-class">Enter banner line.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!visa_text) {
+    //   $("#visa_text").after('<div class="error-class">Enter visa text.</div>');
+    //   evt.preventDefault();
+    // }
+    // if (!degree_text) {
+    //   $("#degree_text").after(
+    //     '<div class="error-class">Enter degree text.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!scholar_text) {
+    //   $("#scholar_text").after(
+    //     '<div class="error-class">Enter scholar text.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (!rank_text) {
+    //   $("#rank_text").after('<div class="error-class">Enter rank text.</div>');
+    //   evt.preventDefault();
+    // }
+    // if (!work_text) {
+    //   $("#work_text").after('<div class="error-class">Enter work text.</div>');
+    //   evt.preventDefault();
+    // }
+    // if (!accommodation_text) {
+    //   $("#accommodation_text").after(
+    //     '<div class="error-class">Enter accommodation text.</div>'
+    //   );
+    //   evt.preventDefault();
+    // }
+    // if (typeof know_more !== "undefined") {
+    //   if (!know_more.match(/\.(jpg|jpeg|png|gif)$/)) {
+    //     $("#know_more").after(
+    //       '<div class="error-class">Please upload jpg | jpeg | png | gif file.</div>'
+    //     );
+    //     evt.preventDefault();
+    //   }
+    // }
+
+    const fileInput = document.querySelector("#country_flag");
+    const formData = new FormData();
+    formData.append("flag", fileInput.files[0]);
+
+    const postData = {
+      country_name: this.state.country_name,
+      slug: this.state.country_name.toLowerCase(),
+      code: this.state.code,
+      flag: formData.get("flag").name,
+      description: this.state.description,
+      country_short_name: this.state.country_short_name,
+    };
+    // console.log("postData", postData);
+    // evt.preventDefault();
+    // return;
+    axios
+      .post(Url + `api/country/add`, postData)
+      .then((res) => {
+        console.log("res", res);
+        toast.success(res.data.message);
+        window.location.reload();
+      })
+      .catch((err) => {
+        //console.log("err",err)
+        toast.error("Error occured at API end (" + err.message + ")");
+      });
     return true;
   }
   stateValidations(evt) {
@@ -461,6 +624,26 @@ class DataManagement extends React.Component {
       $("#state").after('<div class="error-class">Enter state name.</div>');
       evt.preventDefault();
     }
+
+    //For Save State Data
+    const postData = {
+      country_id: this.state.country_id,
+      name: this.state.name,
+    };
+    // console.log("postData", postData);
+    // evt.preventDefault();
+    // return;
+    axios
+      .post(Url + `api/state/addState`, postData)
+      .then((res) => {
+        console.log("res", res);
+        toast.success(res.data.message);
+        window.location.reload();
+      })
+      .catch((err) => {
+        //console.log("err",err)
+        toast.error("Error occured at API end (" + err.message + ")");
+      });
     return true;
   }
   cityValidations(evt) {
@@ -470,6 +653,25 @@ class DataManagement extends React.Component {
       $("#city").after('<div class="error-class">Enter city name.</div>');
       evt.preventDefault();
     }
+
+    //For Save City Data
+    const postData = {
+      country_id: this.state.country_id,
+      state_id: this.state.state_id,
+      name: this.state.name,
+      slug: this.state.name.toLowerCase(),
+    };
+    axios
+      .post(Url + `api/city/saveCity`, postData)
+      .then((res) => {
+        console.log("res", res);
+        toast.success(res.data.message);
+        window.location.reload();
+      })
+      .catch((err) => {
+        //console.log("err",err)
+        toast.error("Error occured at API end (" + err.message + ")");
+      });
     return true;
   }
   addUniValidations(evt) {
@@ -838,8 +1040,13 @@ class DataManagement extends React.Component {
     return true;
   }
   render() {
+    const countryList = this.state.countryList || [];
+    const stateList = this.state.stateList || [];
+    const cityList = this.state.cityList || [];
+
     return (
       <section className="content">
+        <ToastContainer />
         <Modal show={this.state.show} onHide={() => this.handleModel()}>
           <Modal.Header closeButton>
             <h3 class="box-title">Add Country</h3>
@@ -852,7 +1059,9 @@ class DataManagement extends React.Component {
                     <label>Country Name</label>
                     <input
                       type="text"
-                      name="name"
+                      name="country_name"
+                      onChange={(evt) => this.handleChange(evt)}
+                      defaultValue={this.state.country_name}
                       class="form-control"
                       placeholder="Enter country name"
                       id="country_name"
@@ -864,7 +1073,9 @@ class DataManagement extends React.Component {
                     <label>Country Code</label>
                     <input
                       type="text"
-                      name="country_code"
+                      name="code"
+                      onChange={(evt) => this.handleChange(evt)}
+                      defaultValue={this.state.code}
                       class="form-control number"
                       placeholder="Enter country code"
                       id="country_code"
@@ -876,8 +1087,10 @@ class DataManagement extends React.Component {
                     <label>Country Short Name</label>
                     <input
                       type="text"
-                      name="country_sort_code"
-                      class="form-control number"
+                      name="country_short_name"
+                      onChange={(evt) => this.handleChange(evt)}
+                      defaultValue={this.state.country_short_name}
+                      class="form-control "
                       placeholder="Enter country sort code"
                       id="country_sort_code"
                     />
@@ -888,7 +1101,9 @@ class DataManagement extends React.Component {
                     <label>Country Flag</label>
                     <input
                       type="file"
-                      name="country_flag"
+                      name="flag"
+                      onChange={(evt) => this.handleChange(evt)}
+                      defaultValue={this.state.flag}
                       class="form-control"
                       id="country_flag"
                     />
@@ -913,9 +1128,10 @@ class DataManagement extends React.Component {
                       id="countryTextarea"
                       class="form-control"
                       rows="3"
-                      name="country_about"
+                      name="description"
+                      onChange={(evt) => this.handleChange(evt)}
+                      defaultValue={this.state.description}
                       placeholder="Enter about"
-                      maxLength="255"
                     ></textarea>
                   </div>
                 </div>
@@ -2339,18 +2555,6 @@ class DataManagement extends React.Component {
               </div>
             </form>
           </Modal.Body>
-          <Modal.Footer>
-            {/* <button
-              class="btn btn-danger"
-              type="submit"
-              onClick={() => {
-                this.handleModel3();
-              }}
-              value="Close"
-            >
-              Close
-            </button> */}
-          </Modal.Footer>
         </Modal>
         <Modal show={this.state.show4} onHide={() => this.handleModel4()}>
           <Modal.Header closeButton>
@@ -2617,21 +2821,6 @@ class DataManagement extends React.Component {
               </div>
             </form>
           </Modal.Body>
-          <Modal.Footer>
-            {/* <button class="btn btn-warning" type="submit">
-              Submit
-            </button>
-            <button
-              class="btn btn-danger"
-              type="submit"
-              onClick={() => {
-                this.handleModel4();
-              }}
-              value="Close"
-            >
-              Close
-            </button> */}
-          </Modal.Footer>
         </Modal>
         <Modal show={this.state.show5} onHide={() => this.handleModel5()}>
           <Modal.Header closeButton>
@@ -2645,8 +2834,22 @@ class DataManagement extends React.Component {
                     <div class="col-lg-12 col-sm-12 col-xs-12">
                       <div class="form-group">
                         <label>Country</label>
-                        <select class="form-control" id="country">
+                        <select
+                          class="form-control"
+                          id="country"
+                          name="country_id"
+                          onChange={(evt) => this.handleChange(evt)}
+                          defaultValue={this.state.country_id}
+                        >
                           <option>Select Country</option>
+                          {countryList &&
+                            countryList.map((data) => {
+                              return (
+                                <option value={data.id} key={data.id}>
+                                  {data.country_name}
+                                </option>
+                              );
+                            })}
                         </select>
                       </div>
                     </div>
@@ -2655,7 +2858,9 @@ class DataManagement extends React.Component {
                         <label>State Name</label>
                         <input
                           type="text"
-                          name="state"
+                          name="name"
+                          onChange={(evt) => this.handleChange(evt)}
+                          defaultValue={this.state.name}
                           id="state"
                           class="form-control"
                           placeholder="Enter state name"
@@ -2672,18 +2877,6 @@ class DataManagement extends React.Component {
               </div>
             </form>
           </Modal.Body>
-          <Modal.Footer>
-            {/* <button
-              class="btn btn-danger"
-              type="submit"
-              onClick={() => {
-                this.handleModel5();
-              }}
-              value="Close"
-            >
-              Close
-            </button> */}
-          </Modal.Footer>
         </Modal>
         <Modal show={this.state.show6} onHide={() => this.handleModel6()}>
           <Modal.Header closeButton>
@@ -2697,16 +2890,42 @@ class DataManagement extends React.Component {
                     <div class="col-lg-12 col-sm-12 col-xs-12">
                       <div class="form-group">
                         <label>Country</label>
-                        <select class="form-control">
+                        <select
+                          class="form-control"
+                          name="country_id"
+                          onChange={(evt) => this.handleChange(evt)}
+                          defaultValue={this.state.country_id}
+                        >
                           <option>Select Country</option>
+                          {countryList &&
+                            countryList.map((data) => {
+                              return (
+                                <option value={data.id} key={data.id}>
+                                  {data.country_name}
+                                </option>
+                              );
+                            })}
                         </select>
                       </div>
                     </div>
                     <div class="col-lg-12 col-sm-12 col-xs-12">
                       <div class="form-group">
                         <label>State</label>
-                        <select class="form-control">
+                        <select
+                          class="form-control"
+                          name="state_id"
+                          onChange={(evt) => this.handleChange(evt)}
+                          defaultValue={this.state.state_id}
+                        >
                           <option>Select State</option>
+                          {stateList &&
+                            stateList.map((data) => {
+                              return (
+                                <option value={data.id} key={data.id}>
+                                  {data.name}
+                                </option>
+                              );
+                            })}
                         </select>
                       </div>
                     </div>
@@ -2715,7 +2934,9 @@ class DataManagement extends React.Component {
                         <label>City Name</label>
                         <input
                           type="text"
-                          name="city"
+                          name="name"
+                          onChange={(evt) => this.handleChange(evt)}
+                          defaultValue={this.state.name}
                           id="city"
                           class="form-control"
                           placeholder="Enter city name"
@@ -2732,18 +2953,6 @@ class DataManagement extends React.Component {
               </div>
             </form>
           </Modal.Body>
-          <Modal.Footer>
-            {/* <button
-              class="btn btn-danger"
-              type="submit"
-              onClick={() => {
-                this.handleModel6();
-              }}
-              value="Close"
-            >
-              Close
-            </button> */}
-          </Modal.Footer>
         </Modal>
         <div className="col-xs-12">
           <div className="box">
@@ -2846,31 +3055,51 @@ class DataManagement extends React.Component {
                                       </tr>
                                     </thead>
                                     <tbody>
-                                      <tr>
-                                        <td>1</td>
-                                        <td>AUSTRALIA (AUT)</td>
-                                        <td>
-                                          <img
-                                            class="flag"
-                                            src={
-                                              "/admin/build/avatars/Flag-Australia.jpg"
-                                            }
-                                          />{" "}
-                                          (+61)
-                                        </td>
-                                        <td>Testing</td>
-                                        <td>
-                                          <a href="#!">Active</a>
-                                        </td>
-                                        <td>
-                                          <Link
-                                            to={"/admin/build/edit-country"}
-                                            class="edit"
-                                          >
-                                            <span class="fa fa-pencil-square-o"></span>
-                                          </Link>
-                                        </td>
-                                      </tr>
+                                      {countryList &&
+                                        countryList.length > 0 &&
+                                        countryList.map((data, key) => {
+                                          return (
+                                            <tr key={data.id}>
+                                              <td>{++key}</td>
+                                              <td>{data.country_name}</td>
+                                              <td>{data.flag}</td>
+                                              <td>{data.description}</td>
+                                              <td>
+                                                <a
+                                                  href="javascript:void(0)"
+                                                  onClick={(evt) =>
+                                                    this.activeInactiveCountry(
+                                                      evt,
+                                                      data.status,
+                                                      data.id
+                                                    )
+                                                  }
+                                                >
+                                                  {data.status == 1 ? (
+                                                    <span class="label label-lg  label-light-success label-inline">
+                                                      Active
+                                                    </span>
+                                                  ) : (
+                                                    <span class="label label-lg  label-light-danger label-inline">
+                                                      Inactive
+                                                    </span>
+                                                  )}
+                                                </a>
+                                              </td>
+                                              <td>
+                                                <Link
+                                                  to={
+                                                    "/admin/build/edit-country/" +
+                                                    data.id
+                                                  }
+                                                  class="edit"
+                                                >
+                                                  <span class="fa fa-pencil-square-o"></span>
+                                                </Link>
+                                              </td>
+                                            </tr>
+                                          );
+                                        })}
                                     </tbody>
                                   </table>
                                 </div>
@@ -2942,7 +3171,7 @@ class DataManagement extends React.Component {
                                 <hr />
                                 <div class="tab-content">
                                   <table
-                                    id="example"
+                                    id="example2"
                                     class="table table-bordered "
                                   >
                                     <thead>
@@ -2954,21 +3183,49 @@ class DataManagement extends React.Component {
                                       </tr>
                                     </thead>
                                     <tbody>
-                                      <tr>
-                                        <td>1</td>
-                                        <td>Uttar Pradesh</td>
-                                        <td>
-                                          <a href="#!">Active</a>
-                                        </td>
-                                        <td>
-                                          <Link
-                                            to={"/admin/build/edit-state"}
-                                            class="edit"
-                                          >
-                                            <span class="fa fa-pencil-square-o"></span>
-                                          </Link>
-                                        </td>
-                                      </tr>
+                                      {stateList &&
+                                        stateList.length > 0 &&
+                                        stateList.map((data, key) => {
+                                          return (
+                                            <tr key={data.id}>
+                                              <td>{++key}</td>
+                                              <td>{data.name}</td>
+                                              <td>
+                                                <a
+                                                  href="javascript:void(0)"
+                                                  onClick={(evt) =>
+                                                    this.activeInactiveState(
+                                                      evt,
+                                                      data.status,
+                                                      data.id
+                                                    )
+                                                  }
+                                                >
+                                                  {data.status == 1 ? (
+                                                    <span class="label label-lg  label-light-success label-inline">
+                                                      Active
+                                                    </span>
+                                                  ) : (
+                                                    <span class="label label-lg  label-light-danger label-inline">
+                                                      Inactive
+                                                    </span>
+                                                  )}
+                                                </a>
+                                              </td>
+                                              <td>
+                                                <Link
+                                                  to={
+                                                    "/admin/build/edit-state/" +
+                                                    data.id
+                                                  }
+                                                  class="edit"
+                                                >
+                                                  <span class="fa fa-pencil-square-o"></span>
+                                                </Link>
+                                              </td>
+                                            </tr>
+                                          );
+                                        })}
                                     </tbody>
                                   </table>
                                 </div>
@@ -3040,7 +3297,7 @@ class DataManagement extends React.Component {
                                 <hr />
                                 <div class="tab-content">
                                   <table
-                                    id="example"
+                                    id="example1"
                                     class="table table-bordered "
                                   >
                                     <thead>
@@ -3052,21 +3309,49 @@ class DataManagement extends React.Component {
                                       </tr>
                                     </thead>
                                     <tbody>
-                                      <tr>
-                                        <td>1</td>
-                                        <td>Noida</td>
-                                        <td>
-                                          <a href="#!">Active</a>
-                                        </td>
-                                        <td>
-                                          <Link
-                                            to={"/admin/build/edit-city"}
-                                            class="edit"
-                                          >
-                                            <span class="fa fa-pencil-square-o"></span>
-                                          </Link>
-                                        </td>
-                                      </tr>
+                                      {cityList &&
+                                        cityList.length > 0 &&
+                                        cityList.map((data, key) => {
+                                          return (
+                                            <tr key={data.city_id}>
+                                              <td>{++key}</td>
+                                              <td>{data.name}</td>
+                                              <td>
+                                                <a
+                                                  href="javascript:void(0)"
+                                                  onClick={(evt) =>
+                                                    this.activeInactiveCity(
+                                                      evt,
+                                                      data.status,
+                                                      data.city_id
+                                                    )
+                                                  }
+                                                >
+                                                  {data.status == 1 ? (
+                                                    <span class="label label-lg  label-light-success label-inline">
+                                                      Active
+                                                    </span>
+                                                  ) : (
+                                                    <span class="label label-lg  label-light-danger label-inline">
+                                                      Inactive
+                                                    </span>
+                                                  )}
+                                                </a>
+                                              </td>
+                                              <td>
+                                                <Link
+                                                  to={
+                                                    "/admin/build/edit-city/" +
+                                                    data.city_id
+                                                  }
+                                                  class="edit"
+                                                >
+                                                  <span class="fa fa-pencil-square-o"></span>
+                                                </Link>
+                                              </td>
+                                            </tr>
+                                          );
+                                        })}
                                     </tbody>
                                   </table>
                                 </div>

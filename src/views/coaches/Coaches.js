@@ -18,7 +18,7 @@ class Coaches extends React.Component {
   componentDidMount() {
     //initialize datatable
     $(document).ready(function () {
-      $("#example").DataTable();
+      // $("#example").DataTable();
     });
     $(document).on("input", ".number", function () {
       this.value = this.value.replace(/\D/g, "");
@@ -282,6 +282,14 @@ class Coaches extends React.Component {
                       options={this.state.DayOptions}
                       displayValue="day"
                     />
+                  </div>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-12">
+                  <div class="form-group">
+                    <label>University</label>
+                    <select class="form-control" name="university">
+                      <option value="">Select</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-lg-6 col-sm-6 col-xs-12">

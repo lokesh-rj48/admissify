@@ -195,6 +195,14 @@ class Counsellor extends React.Component {
                 </div>
                 <div class="col-lg-6 col-sm-6 col-xs-12">
                   <div class="form-group">
+                    <label>University</label>
+                    <select class="form-control" name="university">
+                      <option value="">Select</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-12">
+                  <div class="form-group">
                     <label>City</label>
                     <select class="form-control ">
                       <option value="">Select City</option>

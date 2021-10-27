@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 //Bootstrap and jQuery libraries
+import Url from "../../components/URL/Url";
 import { Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
@@ -31,28 +32,19 @@ class Courses extends React.Component {
     console.log("cors error");
     //For Course Level
     axios
-      .get(
-        `http://localhost:8081/api/masters/getMasters?masterGroup=CourseLevel`,
-        {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        }
-      )
+      .get(Url + `api/masters/getMasters?masterGroup=CourseLevel`)
       .then((res) => {
         console.log("res", res);
         this.setState({ courseLevelList: res.data.data });
       })
       .catch((err) => {
         //console.log("err",err)
-        toast.error("Error occured at API end (" + err.message + ")");
+        toast.error("Error occurred at API end (" + err.message + ")");
       });
 
     //For Stream
     axios
-      .get(`http://localhost:8081/api/masters/getMasters?masterGroup=STREAM`, {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      })
+      .get(Url + `api/masters/getMasters?masterGroup=STREAM`)
       .then((res) => {
         console.log("res", res);
         this.setState({ streamList: res.data.data });
@@ -64,10 +56,7 @@ class Courses extends React.Component {
 
     //For Course
     axios
-      .get(`http://localhost:8081/api/masters/getMasters?masterGroup=COURSE`, {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      })
+      .get(Url + `api/masters/getMasters?masterGroup=COURSE`)
       .then((res) => {
         console.log("res", res);
         this.setState({ courseList: res.data.data });
@@ -79,7 +68,7 @@ class Courses extends React.Component {
 
     //initialize datatable
     $(document).ready(function () {
-      $("#example").DataTable();
+      //$("#example").DataTable();
     });
 
     $("body").on("click", ".remove", function () {
@@ -156,7 +145,7 @@ class Courses extends React.Component {
     // evt.preventDefault();
     // return;
     axios
-      .post(`http://localhost:8081/api/masters/add`, postData, {
+      .post(Url + `api/masters/add`, postData, {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       })
@@ -195,7 +184,7 @@ class Courses extends React.Component {
     };
     //console.log("streamData", streamData);
     axios
-      .post(`http://localhost:8081/api/masters/add`, streamData, {
+      .post(Url + `api/masters/add`, streamData, {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       })
@@ -242,7 +231,7 @@ class Courses extends React.Component {
     console.log("courseData", courseData);
     // evt.preventDefault();
     axios
-      .post(`http://localhost:8081/api/masters/add`, courseData, {
+      .post(Url + `api/masters/add`, courseData, {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       })
@@ -274,7 +263,10 @@ class Courses extends React.Component {
             <h3 class="box-title">Add Course Level</h3>
           </Modal.Header>
           <Modal.Body>
-            <form onSubmit={(evt) => this.courseLevelValidations(evt)}>
+            <form
+              onSubmit={(evt) => this.courseLevelValidations(evt)}
+              enctype="multipart/form-data"
+            >
               <div class="box-body row">
                 <div class="col-lg-12 col-sm-12 col-xs-12">
                   <div class="form-group">
@@ -289,7 +281,7 @@ class Courses extends React.Component {
                     />
                   </div>
                 </div>
-                <div class="col-lg-12 col-sm-12 col-xs-12">
+                {/* <div class="col-lg-12 col-sm-12 col-xs-12">
                   <div class="form-group">
                     <label>Course Image</label>
                     <input
@@ -299,7 +291,7 @@ class Courses extends React.Component {
                       name="file"
                     />
                   </div>
-                </div>
+                </div> */}
                 <div class="col-lg-12 col-sm-12 col-xs-12">
                   <div class="form-group">
                     <label for="courseTextarea">Description</label>
@@ -416,6 +408,30 @@ class Courses extends React.Component {
                       onChange={(evt) => this.handleChange(evt)}
                       defaultValue={this.state.courseName}
                     />
+                  </div>
+                </div>
+                <div class="col-lg-12 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                    <label for="courseTextarea">Specialization</label>
+                    <textarea
+                      id="courseTextarea"
+                      class="form-control"
+                      rows="3"
+                      name="specialization"
+                      placeholder="Enter specialization"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="col-lg-12 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                    <label for="courseTextarea">Scope</label>
+                    <textarea
+                      id="courseTextarea"
+                      class="form-control"
+                      rows="3"
+                      name="scope"
+                      placeholder="Enter course Scope"
+                    ></textarea>
                   </div>
                 </div>
                 <div class="col-lg-12 col-sm-12 col-xs-12">
@@ -543,7 +559,7 @@ class Courses extends React.Component {
                                         courseLevelList.length > 0 &&
                                         courseLevelList.map((data, key) => {
                                           return (
-                                            <tr key={key}>
+                                            <tr key={data.id}>
                                               <td>{++key}</td>
                                               <td>{data.MasterName}</td>
                                               <td>
@@ -682,7 +698,7 @@ class Courses extends React.Component {
                                         streamList.length > 0 &&
                                         streamList.map((data, key) => {
                                           return (
-                                            <tr>
+                                            <tr key={data.id}>
                                               <td>{++key}</td>
                                               <td>{data.MasterName}</td>
                                               <td>{data.Parent.MasterName}</td>
@@ -850,7 +866,7 @@ class Courses extends React.Component {
                                         courseList.length > 0 &&
                                         courseList.map((data, key) => {
                                           return (
-                                            <tr>
+                                            <tr key={data.id}>
                                               <td>{++key}</td>
                                               <td>{data.MasterName}</td>
                                               <td>{data.Parent.MasterName}</td>
