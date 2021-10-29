@@ -47,6 +47,7 @@ app.get("/auth", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
+  console.log(req.body);
   const user_name = req.body.user_name;
   const password = md5(req.body.password);
 
@@ -61,6 +62,7 @@ app.post("/login", (req, res) => {
         req.session.user = result;
         res.send(result);
       } else {
+        console.log("Invalid Email-id or Password");
         res.send({ message: "Invalid Email-id or Password" });
       }
     }

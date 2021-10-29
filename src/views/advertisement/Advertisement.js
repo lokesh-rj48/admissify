@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 //Bootstrap and jQuery libraries
 import { Modal } from "react-bootstrap";
@@ -10,7 +10,16 @@ import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import $ from "jquery";
+import { GetAddmanagementList } from "../../services/service";
+
+
+
+
 class Advertisement extends React.Component {
+
+
+
+
   componentDidMount() {
     //initialize datatable
     $(document).ready(function () {
@@ -24,12 +33,21 @@ class Advertisement extends React.Component {
     });
   }
 
+
+
+
+
+
+
+
   constructor() {
     super();
     this.state = {
       show: false,
     };
   }
+
+  
   handleModel() {
     this.setState({ show: !this.state.show });
   }

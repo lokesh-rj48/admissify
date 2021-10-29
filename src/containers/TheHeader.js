@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-//import { useHistory } from "react-router-dom";
+import {Link, useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-daterangepicker/daterangepicker.css";
 import {
@@ -19,13 +19,13 @@ import CIcon from "@coreui/icons-react";
 import routes from "../routes";
 
 const TheHeader = () => {
-  //const history = useHistory();
+  const history = useHistory();
 
-  // const logout = () => {
-  //   localStorage.clear();
-  //   // history.push("/login");
-  //   window.location.href = "/login";
-  // };
+  const logout = () => {
+   localStorage.clear();
+    history.push("/login");
+    //window.location.href = "/login";
+  };
 
   const dispatch = useDispatch();
   const sidebarShow = useSelector((state) => state.sidebarShow);
@@ -86,8 +86,16 @@ const TheHeader = () => {
           type="submit"
           className="btn btn-danger"
           value="Logout"
-          // onClick={logout}
+          onClick={logout}
         />
+               {/* <a
+                  href={logout ? "/login" : "/profile"}
+                  onClick={logout}
+                  className="btn btn-danger "
+                >
+                  {" "}
+                  Log Out
+                </a> */}
       </CHeaderNav>
 
       <CSubheader className="px-3 justify-content-between">

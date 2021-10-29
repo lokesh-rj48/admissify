@@ -14,3 +14,24 @@ button {
     margin-top: 0 !important;
   }
 }
+
+
+.disabledClass{
+  pointer-events: none;
+  opacity: 0.5;
+  background: #FFBB25;
+  color: #fff !important;
+  border-color: #FFBB25;
+  border-radius: 5px;
+}
+
+span.error {
+  color: red;
+  
+}
+
+
+.box.box-primary {
+  background: white;
+  padding: 15px;
+}

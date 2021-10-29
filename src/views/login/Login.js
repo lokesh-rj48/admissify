@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import { Link, useHistory } from "react-router-dom";
+import { validateLogin } from "../../validation/validation";
+
 import {
   CCard,
   CCardBody,
@@ -15,48 +16,62 @@ import {
   CRow,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import Token from "../../components/AuthToken/AuthToken";
+import { getToken } from "../../utils/Auth/token";
+import { loginUser } from "../../services/service";
+
+const initialValues = {
+  email: "",
+  password: "",
+};
 
 const Login = () => {
-  // const [user_name, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
+  const history = useHistory();
+  const isAuthenticated = getToken();
 
-  // const [loginStatus, setLoginStatus] = useState("");
+  const [user, setUser] = useState(initialValues);
+  const [formValidate, setSubmitting] = useState({
+    isSubmitting: false,
+    error: undefined,
+  });
+  const [errors, setErrors] = useState({ selected: undefined });
+  const { email, password } = user;
 
-  // //const history = useHistory();
+  React.useEffect(() => {
+    const validationErrors = validateLogin(user);
+    let noErrors = Object.keys(validationErrors).length == 0;
+    let currentError = validationErrors[errors.selected];
+    setSubmitting({ isSubmitting: noErrors, error: currentError });
+  }, [errors]);
 
-  // const login = () => {
-  //   axios
-  //     .post("http://localhost:3001/login", {
-  //       user_name: user_name,
-  //       password: password,
-  //     })
-  //     .then((response) => {
-  //       if (response.data.message) {
-  //         setLoginStatus(response.data.message);
-  //       } else {
-  //         localStorage.setItem(
-  //           "authToken",
-  //           user_name ? "f6bae9511cd510f9322cae49c5db7268" : ""
-  //         );
-  //         localStorage.setItem("userRole", response.data[0].user_role);
-  //         if (localStorage.authToken) {
-  //           // history.push("/dashboard");
-  //           window.location.href = "/dashboard";
-  //         } else {
-  //           //history.push("/login");
-  //           window.location.href = "/login";
-  //         }
-  //       }
-  //     });
-  // };
+  const onValueChange = (event) => {
+    event.preventDefault();
+    setUser({ ...user, [event.target.name]: event.target.value });
+    setErrors({ ...errors, selected: event?.target.name });
+  };
+
+  const userLogin = async (event) => {
+    let userdata = await loginUser(user, history);
+console.log(userdata);
+    // if (userdata?.token) {
+    //   history.push("/dashboard");
+    //   //  window.location.href = "/dashboard";
+    // } else {
+    //    history.push("/login");
+    //  // window.location.href = "/login";
+    // }
+
+  };
+
   // useEffect(() => {
-  //   if (localStorage.authToken !== Token) {
-  //     // history.push("/login");
-  //     window.location.href = "/login";
+  //   if (isAuthenticated == false) {
+  //     history.push("/login");
+  //     //           window.location.href = "/dashboard";
+  //   } else {
+  //     history.push("/dashboard");
+  //     //  window.location.href = "/login";
   //   }
-  // }, []);
-
+  // }, [isAuthenticated]);
+console.log(isAuthenticated);
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
@@ -73,6 +88,7 @@ const Login = () => {
                       {/* <p style={{ color: "red" }}>{loginStatus}</p> */}
                     </center>
                     <br />
+                   
                     <CInputGroup className="mb-3">
                       <CInputGroupPrepend>
                         <CInputGroupText>
@@ -81,13 +97,18 @@ const Login = () => {
                       </CInputGroupPrepend>
                       <CInput
                         type="text"
-                        placeholder="Username"
-                        autoComplete="username"
-                        // onChange={(e) => {
-                        //   setUsername(e.target.value);
-                        // }}
+                        name="email"
+                        placeholder="Email"
+                        autoComplete="email"
+                        value={email}
+                        onChange={(input) => onValueChange(input)}
                       />
+                      
                     </CInputGroup>
+                    {errors?.selected == "email" && (
+                      <span className="error">{formValidate?.error}</span>
+                    )}
+                   
                     <CInputGroup className="mb-4">
                       <CInputGroupPrepend>
                         <CInputGroupText>
@@ -95,21 +116,33 @@ const Login = () => {
                         </CInputGroupText>
                       </CInputGroupPrepend>
                       <CInput
-                        type="password"
+                        type="Password"
+                        name="password"
                         placeholder="Password"
                         autoComplete="current-password"
-                        // onChange={(e) => {
-                        //   setPassword(e.target.value);
-                        // }}
+                        value={password}
+                        onChange={(input) => onValueChange(input)}
                       />
                     </CInputGroup>
+                    {errors?.selected == "password" && (
+                      <span className="error">{formValidate?.error}</span>
+                    )}
                     <CRow>
                       <CCol xs="12">
                         <center>
-                          <Link>
-                            {/* <button class="btn btn-warning" onClick={login}> */}
-                            <button class="btn btn-warning">Login</button>
-                          </Link>
+                          {/* <a> */}
+                          <button type="button"
+                            className={
+                              !formValidate.isSubmitting
+                                ? "disabledClass btn btn-warning "
+                                : "btn btn-warning"
+                            }
+                            onClick={userLogin}
+                          >
+                            Login
+                          </button>
+                          {/* <button className="btn btn-warning">Login</button> */}
+                          {/* </a> */}
                         </center>
                       </CCol>
                     </CRow>
