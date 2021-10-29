@@ -10,7 +10,7 @@ import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import $ from "jquery";
-import { GetAddmanagementList } from "../../services/service";
+
 
 
 

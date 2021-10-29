@@ -42,25 +42,4 @@ module.exports.loginUser = async (user, history ) => {
 
 
 
-module.exports.GetAddmanagementList = async (user, history ) => {
-  console.log(user);
-  const url = baseurl.baseurl + urls.getAddmanagementList
-  try {
-    var res = await axios.post(url, user);
-
-    // token.setToken(res?.data?.token);
-
-    console.log(res?.data);
-
-    if (res?.status) {
-      toast.toast(res?.data?.message,);
-      // history.push("/dashboard")
-      return res?.data;
-    }
-   
-  } catch (error) {
-    console.log("error while login---", error?.response?.data?.message);
-    // toast.toast(error?.response?.data?.message, { type: "error" });
-  }
-};
 

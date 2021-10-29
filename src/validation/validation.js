@@ -31,6 +31,39 @@ export function validateLogin(values) {
 
 
 
+export function validatecountry(values) {
+  var errors = {};
+  if (!values?.country_name) {
+    errors.country_name = "country name Required";
+  } 
+  if (!values?.code) {
+    errors.code = "code Required";
+  }
+  if (!values?.country_short_name) {
+    errors.country_short_name = "Country Short Name Required";
+  }
+  if (!values?.flag) {
+    errors.flag = "Country Flag Required";
+  }else if (!values?.flag?.match(/\.(jpg|jpeg|png|gif)$/i)) {
+    errors.flag = "Please upload jpg | jpeg | png | gif file.";
+  }
+  if (!values?.description) {
+    errors.description = "About Required";
+  }else if (values?.description?.length < 10) {
+    errors.description = "description must be at least 10 characters";
+  }
+  
+  return errors;
+}
+
+
+
+// (typeof CountryLogo !== "undefined") {
+//   if (!CountryLogo.match(/\.(jpg|jpeg|png|gif)$/)) {
+//     $("#country_flag").after(
+//       '<div class="error-class">Please upload jpg | jpeg | png | gif file.</div>'
+//     );
+
 
 
 
