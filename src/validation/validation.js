@@ -42,16 +42,12 @@ export function validatecountry(values) {
   if (!values?.country_short_name) {
     errors.country_short_name = "Country Short Name Required";
   }
-  if (!values?.flag) {
-    errors.flag = "Country Flag Required";
-  }else if (!values?.flag?.match(/\.(jpg|jpeg|png|gif)$/i)) {
-    errors.flag = "Please upload jpg | jpeg | png | gif file.";
-  }
   if (!values?.description) {
     errors.description = "About Required";
-  }else if (values?.description?.length < 10) {
-    errors.description = "description must be at least 10 characters";
   }
+  // else if (values?.description?.length < 10) {
+  //   errors.description = "description must be at least 10 characters";
+  // }
   
   return errors;
 }

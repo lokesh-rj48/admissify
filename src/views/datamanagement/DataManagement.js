@@ -28,7 +28,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { validatecountry } from "../../validation/validation";
 const axios = require("axios");
 
-
 class DataManagement extends React.Component {
   componentDidMount() {
     //initialize datatable
@@ -116,82 +115,76 @@ class DataManagement extends React.Component {
       slug: "",
       country_id: "",
       name: "",
-      erro:"",
-      errors:{ selected: undefined },
-      formValidate:{ isSubmitting: false, error: undefined }
+      erro: "",
+      errors: { selected: undefined },
+      formValidate: { isSubmitting: false, error: undefined },
     };
   }
 
-  // componentDidMount() {
+  //   componentDidMount() {
 
-    
-  //   const validationErrors = validatecountry( {country_name :this.state.country_name, code:this.state.code, country_short_name:this.state.country_short_name, description: this.state.description, });
-  //   let noErrors = Object.keys(validationErrors).length == 0;
-  //   let currentError = validationErrors[this.state.errors.selected];
-  //   this.setState({formValidate:{ isSubmitting: noErrors, error: currentError }});
+  //     const validationErrors = validatecountry( {country_name :this.state.country_name, code:this.state.code, country_short_name:this.state.country_short_name, description: this.state.description, });
+  //     let noErrors = Object.keys(validationErrors).length == 0;
+  //     let currentError = validationErrors[this.state.errors.selected];
+  //     this.setState({formValidate:{ isSubmitting: noErrors, error: currentError }});
+  // console.log(validationErrors);
+  //   }
 
-  // }
-
-
-
-  componentDidUpdate (prevProps, prevState) {
-
+  componentDidUpdate(prevProps, prevState) {
     if (prevState.country_name !== this.state.country_name) {
-
-    const validationErrors = validatecountry({country_name :this.state.country_name, code:this.state.code, country_short_name:this.state.country_short_name, description: this.state.description, });
-    let noErrors = Object.keys(validationErrors).length == 0;
-    let currentError = validationErrors[this.state.errors.selected];
-    this.setState({formValidate:{ isSubmitting: noErrors, error: currentError }});
-    
-
-
-    }
-    if (prevState.code !== this.state.code) {
-
-      const validationErrors = validatecountry({country_name :this.state.country_name, code:this.state.code, country_short_name:this.state.country_short_name, description: this.state.description, });
+      const validationErrors = validatecountry({
+        country_name: this.state.country_name,
+        code: this.state.code,
+        country_short_name: this.state.country_short_name,
+        description: this.state.description,
+      });
       let noErrors = Object.keys(validationErrors).length == 0;
       let currentError = validationErrors[this.state.errors.selected];
-      this.setState({formValidate:{ isSubmitting: noErrors, error: currentError }});
-      
-  
-  
-      }
-      if (prevState.country_short_name !== this.state.country_short_name) {
+      this.setState({
+        formValidate: { isSubmitting: noErrors, error: currentError },
+      });
+    }
+    if (prevState.code !== this.state.code) {
+      const validationErrors = validatecountry({
+        country_name: this.state.country_name,
+        code: this.state.code,
+        country_short_name: this.state.country_short_name,
+        description: this.state.description,
+      });
+      let noErrors = Object.keys(validationErrors).length == 0;
+      let currentError = validationErrors[this.state.errors.selected];
+      this.setState({
+        formValidate: { isSubmitting: noErrors, error: currentError },
+      });
+    }
+    if (prevState.country_short_name !== this.state.country_short_name) {
+      const validationErrors = validatecountry({
+        country_name: this.state.country_name,
+        code: this.state.code,
+        country_short_name: this.state.country_short_name,
+        description: this.state.description,
+      });
+      let noErrors = Object.keys(validationErrors).length == 0;
+      let currentError = validationErrors[this.state.errors.selected];
+      this.setState({
+        formValidate: { isSubmitting: noErrors, error: currentError },
+      });
+    }
 
-        const validationErrors = validatecountry({country_name :this.state.country_name, code:this.state.code, country_short_name:this.state.country_short_name, description: this.state.description, });
-        let noErrors = Object.keys(validationErrors).length == 0;
-        let currentError = validationErrors[this.state.errors.selected];
-        this.setState({formValidate:{ isSubmitting: noErrors, error: currentError }});
-        
-    
-    
-        }
-        if (prevState.flag !== this.state.flag) {
-
-        const validationErrors = validatecountry({country_name :this.state.country_name, code:this.state.code, country_short_name:this.state.country_short_name, description: this.state.description, });
-        let noErrors = Object.keys(validationErrors).length == 0;
-        let currentError = validationErrors[this.state.errors.selected];
-        this.setState({formValidate:{ isSubmitting: noErrors, error: currentError }});
-        console.log(this.state.flag);
-    
-    
-        }
-        if (prevState.description !== this.state.description) {
-
-          const validationErrors = validatecountry({country_name :this.state.country_name, code:this.state.code, country_short_name:this.state.country_short_name, description: this.state.description, });
-          let noErrors = Object.keys(validationErrors).length == 0;
-          let currentError = validationErrors[this.state.errors.selected];
-          this.setState({formValidate:{ isSubmitting: noErrors, error: currentError }});
-          
-      
-      
-          }
-
-          
-
-   
+    if (prevState.description !== this.state.description) {
+      const validationErrors = validatecountry({
+        country_name: this.state.country_name,
+        code: this.state.code,
+        country_short_name: this.state.country_short_name,
+        description: this.state.description,
+      });
+      let noErrors = Object.keys(validationErrors).length == 0;
+      let currentError = validationErrors[this.state.errors.selected];
+      this.setState({
+        formValidate: { isSubmitting: noErrors, error: currentError },
+      });
+    }
   }
-
 
   // componentDidUpdate() {
 
@@ -201,7 +194,7 @@ class DataManagement extends React.Component {
   //   this.setState({formValidate:{ isSubmitting: noErrors, error: currentError }});
 
   //   console.log(validationErrors, this.state.formValidate.error)
-   
+
   //  }
 
   handleModel() {
@@ -223,29 +216,49 @@ class DataManagement extends React.Component {
     this.setState({ show6: !this.state.show6 });
   }
   handleChange(evt) {
-    this.setState({
-      [evt.target.name]: evt.target.value,
-    });
-    this.setState({errors:{ selected: evt?.target?.name }});
+    if (evt.name === "flag") {
+      var formData = new FormData();
 
-  
-
-
-    // var fileInput = document.getElementById('fleg');
-    // var filePath = evt?.target?.value;
-    // var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
-    // if(!allowedExtensions.exec(filePath)){
-    //     let erro = 'Please upload file having extensions .jpeg/.jpg/.png/.gif only.'
-    //     this.setState({erro:erro})
-    //     return erro;
-    // }
+      var file = document.getElementById("country_flag").files[0];
+      formData.append("Filedata", file);
+      var t = file.type.split("/").pop().toLowerCase();
+      if (t != "jpeg" && t != "jpg" && t != "png" && t != "bmp" && t != "gif") {
+        alert(
+          "Please upload file having extensions .jpeg/.jpg/.png/.gif only."
+        );
+        var val = (document.getElementById("country_flag").value = "");
+        this.setState({
+          [evt.name]: val,
+        });
+        return false;
+      } else {
+        this.setState({
+          [evt.name]: evt?.value,
+        });
+        this.setState({ errors: { selected: evt?.name } });
+      }
+    } 
     
     
-    // else{
-      
-       
-    // }
+    else {
+      this.setState({
+        [evt.target.name]: evt.target.value,
+      });
+      this.setState({ errors: { selected: evt?.target?.name } });
 
+      const validationErrors = validatecountry({
+        country_name: this.state.country_name,
+        code: this.state.code,
+        country_short_name: this.state.country_short_name,
+        description: this.state.description,
+      });
+      let noErrors = Object.keys(validationErrors).length == 0;
+      let currentError = validationErrors[this.state.errors.selected];
+      this.setState({
+        formValidate: { isSubmitting: noErrors, error: currentError },
+      });
+    }
+   
   }
 
   //Country Active Inactive Status
@@ -708,13 +721,7 @@ class DataManagement extends React.Component {
     // console.log("postData", postData);
     // evt.preventDefault();
     // return;
-    
-   
 
-
-
-    
-    
     axios
       .post(Url + `api/country/add`, postData)
       .then((res) => {
@@ -728,8 +735,6 @@ class DataManagement extends React.Component {
       });
     return true;
   }
-
-
 
   stateValidations(evt) {
     $(".error-class").remove();
@@ -1186,7 +1191,9 @@ class DataManagement extends React.Component {
                       id="country_name"
                     />
                     {this?.state?.errors?.selected == "country_name" && (
-                      <span className="errors">{this.state.formValidate.error}</span>
+                      <span className="errors">
+                        {this.state.formValidate.error}
+                      </span>
                     )}
                   </div>
                 </div>
@@ -1203,8 +1210,10 @@ class DataManagement extends React.Component {
                       id="country_code"
                     />
 
-                     {this?.state?.errors?.selected == "code" && (
-                      <span className="errors">{this.state.formValidate.error}</span>
+                    {this?.state?.errors?.selected == "code" && (
+                      <span className="errors">
+                        {this.state.formValidate.error}
+                      </span>
                     )}
                   </div>
                 </div>
@@ -1220,8 +1229,10 @@ class DataManagement extends React.Component {
                       placeholder="Enter country sort code"
                       id="country_sort_code"
                     />
-                     {this?.state?.errors?.selected == "country_short_name" && (
-                      <span className="errors">{this.state.formValidate.error}</span>
+                    {this?.state?.errors?.selected == "country_short_name" && (
+                      <span className="errors">
+                        {this.state.formValidate.error}
+                      </span>
                     )}
                   </div>
                 </div>
@@ -1231,14 +1242,19 @@ class DataManagement extends React.Component {
                     <input
                       type="file"
                       name="flag"
-                      onChange={(evt) => this.handleChange(evt)}
+                      onChange={(evt) => {
+                        this.handleChange({
+                          value: evt.target.files[0].name,
+                          name: "flag",
+                        });
+                      }}
                       defaultValue={this.state.flag}
                       class="form-control"
                       id="country_flag"
                     />
-                     {this?.state?.errors?.selected == "flag" && (
-                      <span className="errors">{this.state.formValidate.error}</span>
-                    )}
+                    {/* {this?.state?.errors?.selected == "flag" && (
+                      <span className="errors">{this.state.erro}</span>
+                    )} */}
                   </div>
                 </div>
                 <div class="col-lg-6 col-sm-6 col-xs-12">
@@ -1251,7 +1267,6 @@ class DataManagement extends React.Component {
                       id="feature_image"
                       multiple
                     />
-                    
                   </div>
                 </div>
                 <div class="col-lg-12 col-sm-12 col-xs-12">
@@ -1266,8 +1281,10 @@ class DataManagement extends React.Component {
                       defaultValue={this.state.description}
                       placeholder="Enter about"
                     ></textarea>
-                     {this?.state?.errors?.selected == "description" && (
-                      <span className="errors">{this.state.formValidate.error}</span>
+                    {this?.state?.errors?.selected == "description" && (
+                      <span className="errors">
+                        {this.state.formValidate.error}
+                      </span>
                     )}
                   </div>
                 </div>
@@ -2134,7 +2151,14 @@ class DataManagement extends React.Component {
                 </div>
 
                 <div class="col-lg-12 col-sm-12 col-xs-12 text-center">
-                  <button class= "btn btn-warning" type="submit">
+                  <button
+                    className={
+                      !this.state.formValidate.isSubmitting
+                        ? "disabledClass btn btn-warning "
+                        : "btn btn-warning"
+                    }
+                    type="submit"
+                  >
                     Submit
                   </button>
                 </div>
@@ -2171,7 +2195,6 @@ class DataManagement extends React.Component {
                       placeholder="Enter university name"
                       id="university"
                     />
-                    
                   </div>
                 </div>
                 <div class="col-lg-6 col-sm-6 col-xs-12">

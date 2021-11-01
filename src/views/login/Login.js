@@ -41,7 +41,7 @@ const Login = () => {
     let noErrors = Object.keys(validationErrors).length == 0;
     let currentError = validationErrors[errors.selected];
     setSubmitting({ isSubmitting: noErrors, error: currentError });
-    console.log("hy");
+   
   }, [errors]);
 
   const onValueChange = (event) => {
@@ -72,7 +72,7 @@ console.log(userdata);
   //     //  window.location.href = "/login";
   //   }
   // }, [isAuthenticated]);
-console.log(isAuthenticated);
+
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
